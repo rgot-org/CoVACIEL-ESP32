@@ -1,0 +1,87 @@
+\doxysection{Co\+VACIEL\+\_\+\+Actionneur.\+h}
+\hypertarget{_co_v_a_c_i_e_l___actionneur_8h_source}{}\label{_co_v_a_c_i_e_l___actionneur_8h_source}\index{src/CoVACIEL\_Actionneur.h@{src/CoVACIEL\_Actionneur.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\#include\ "{}CoVACIEL\_CAN.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Preferences.h>}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/============\ Driver\ Moteur\ ==========-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ RESOLUTION\ 14\ }\textcolor{comment}{//\ resolution\ du\ PWM\ 14\ bits\ :\ quantum\ =\ 1.2µs}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ SERVO\_BASE\_FREQ\ 50}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ DIRECTION\_CHANNEL\ 0}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ PROPULSION\_CHANNEL\ 1}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifdef\ ARDUINO\_M5STACK\_ATOM}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ LED\_PIN\ 27}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#elif\ defined\ ARDUINO\_WAVESHARE\_ESP32\_S3\_ZERO}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ LED\_PIN\ 21}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#elif\ defined\ ARDUINO\_M5STACK\_STAMP\_C3}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ LED\_PIN\ 2}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#elif\ defined\ ARDUINO\_M5STACK\_STAMP\_S3}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ LED\_PIN\ 21}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ARDUINO\_M5STACK\_ATOM}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ pleineEchelle\ =\ pow(2,\ RESOLUTION)\ -\/\ 1;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ angleDegreMax\ =\ 18;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_co_v_a_c_i_e_l__direction}{CoVACIEL\_direction}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction_a64900568396155fafae2b4b6d97a8678}{init}}(\textcolor{keywordtype}{int}\ pin);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction_a4568692111a3dc536c1a395536c78dd4}{setDirectionDegre}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction_a9d0b9761e7587f0d5728d4720331a7cd}{setButeeDroite}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction_a3d9813c4b56c8f253bb9eb0e2ce6b94e}{setButeeGauche}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction_a3a8f44a7ecdf3794ee7f5bdc6896f5ab}{reglageButees}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction_ab4dbc9cb4052c980356b2018611f66ad}{getButeeDroite}}();}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction_a622a409d48fb56f359f9cdc19198062c}{getButeeGauche}}();}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction_a6fdc2b6fab98ae3dcc15b58be2ff215b}{clearParams}}();}
+\DoxyCodeLine{00068\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ rapportCycliqueCentre\ =\ pleineEchelle\ *\ 6.9f\ /\ 100;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ rapportCycliqueMax\ =\ pleineEchelle\ *\ 7.7f\ /\ 100;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ rapportCycliqueMin\ =\ pleineEchelle\ *\ 6.1f\ /\ 100;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{float}\ \_buteeDroite\ =\ rapportCycliqueMax;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{float}\ \_buteeGauche\ =\ rapportCycliqueMin;}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ \_centre\ =\ rapportCycliqueCentre;}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion}{CoVACIEL\_propulsion}}\ }
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion_a192140453b3b70b117b3ed57f96fc265}{init}}(\textcolor{keywordtype}{int}\ pin);}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion_add4dc1f27c1cbcbef747bf308f841a5e}{setPropulsion}}(\textcolor{keywordtype}{int}\ value);\textcolor{comment}{//\ value\ de\ -\/100\ à +100\ (\%)}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion_a55dc7d131bb56aff4f0ac01d26851ee3}{getPropulsion}}();}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion_a151d5abb0df473571329ba554600e2e0}{setPWMAvMax}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion_a1e62f2b6c2845b277a1e986063a46347}{setPWMAvMin}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion_a1c6bb33cc0422303c605326d5067c6ef}{setPWMArMax}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{int}\ getPWMAvMax();}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{int}\ getPWMArMax();}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{int}\ getPWMAvMin();}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion_aa5629740d14ac2b8dff8cd3b1dd30bbd}{reglageButees}}();}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion_a72a8458fe00d33976bff51fce4690eed}{clearParams}}();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/========\ Constantes\ =======-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00130\ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ arret\ =\ 0;}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ rapportCycliqueFrein\ =\ \ pleineEchelle\ *\ 5.0\ /\ 100;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ rapportCycliqueArret\ =\ pleineEchelle\ *\ 7.5\ /\ 100;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//const\ float\ rapportCyclique1ms\ =\ pleineEchelle\ *\ 8\ /\ 100;}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//const\ float\ rapportCyclique2ms\ =\ pleineEchelle\ *\ 8.15\ /\ 100;}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//const\ float\ rapportCycliqueAvMax\ =\ pleineEchelle\ *\ 8\ /\ 100;}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//const\ float\ rapportCycliqueArMax\ =\ pleineEchelle\ *\ 6.5\ /\ 100;\ //1065}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/===========\ Variables\ ==========-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//int\ \_pwm\ =\ 0;\ \ //\ how\ bright\ the\ LED}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{int}\ \_buteeAvMax\ ;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{int}\ \_buteeArMax\ ;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{int}\ \_buteeAvMin\ ;}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{int}\ \_propulsion\ =\ 0;}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{int}\ \_previousPropulsion\ =\ 0;}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \_setPWM(\textcolor{keywordtype}{int}\ pwm);}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//float\ \_calculPwm(int\ propulsion);}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \_recul(\textcolor{keywordtype}{int}\ pwm,\ \textcolor{keywordtype}{bool}\ freinage);}
+\DoxyCodeLine{00148\ \};}
+\DoxyCodeLine{00149\ }
+
+\end{DoxyCode}

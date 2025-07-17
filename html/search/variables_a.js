@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['resp_5fdescr_5fsendmode_5fbits_0',['RESP_DESCR_SENDMODE_BITS',['../_co_v_a_c_i_e_l__lidar_8h.html#a91a0485067d65d3047b896ede2a2d50b',1,'CoVACIEL_lidar.h']]],
+  ['resp_5fdescr_5fsendmode_5fdatatype_5fexpress_5fdense_1',['RESP_DESCR_SENDMODE_DATATYPE_EXPRESS_DENSE',['../_co_v_a_c_i_e_l__lidar_8h.html#a15454b532f7f6fab9610a9019ef0b18b',1,'CoVACIEL_lidar.h']]],
+  ['resp_5fdescr_5fsendmode_5fdatatype_5fexpress_5fextend_2',['RESP_DESCR_SENDMODE_DATATYPE_EXPRESS_EXTEND',['../_co_v_a_c_i_e_l__lidar_8h.html#aad7c38cc20ce60ff53324095cd603cbe',1,'CoVACIEL_lidar.h']]],
+  ['resp_5fdescr_5fsendmode_5fdatatype_5fexpress_5flegacy_3',['RESP_DESCR_SENDMODE_DATATYPE_EXPRESS_LEGACY',['../_co_v_a_c_i_e_l__lidar_8h.html#aa0ef8382534ccd78e72cc1491040891c',1,'CoVACIEL_lidar.h']]],
+  ['resp_5fdescr_5fsendmode_5fmulti_5fresponse_4',['RESP_DESCR_SENDMODE_MULTI_RESPONSE',['../_co_v_a_c_i_e_l__lidar_8h.html#ae763edf1aabee297aa9e5d450a0e82a0',1,'CoVACIEL_lidar.h']]],
+  ['resp_5fdescr_5fsendmode_5fsingle_5fresponse_5',['RESP_DESCR_SENDMODE_SINGLE_RESPONSE',['../_co_v_a_c_i_e_l__lidar_8h.html#aef9397a1b655bdf90f80b7c5d6ded683',1,'CoVACIEL_lidar.h']]],
+  ['resp_5fdescr_5fstart_5fflags_6',['RESP_DESCR_START_FLAGS',['../_co_v_a_c_i_e_l__lidar_8h.html#a995ab99e6a77d19cd9d814c5a9d3617e',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5fget_5fhealth_7',['RESP_TYPE_GET_HEALTH',['../_co_v_a_c_i_e_l__lidar_8h.html#ad89511e58f5401ce7d5c5ccd3759dfd1',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5fget_5finfo_8',['RESP_TYPE_GET_INFO',['../_co_v_a_c_i_e_l__lidar_8h.html#af66c2d37c08ee81201e5a669b80f8a38',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5fget_5flidar_5fconf_9',['RESP_TYPE_GET_LIDAR_CONF',['../_co_v_a_c_i_e_l__lidar_8h.html#a5b9fc901d5a2a14b9c16bd7cdb50caa5',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5fget_5fsamplerate_10',['RESP_TYPE_GET_SAMPLERATE',['../_co_v_a_c_i_e_l__lidar_8h.html#a19d967dd17a0a0e987f99d0bec547573',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5finvalid_11',['RESP_TYPE_INVALID',['../_co_v_a_c_i_e_l__lidar_8h.html#abced99bf48277fa7601e74064f501310',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5fscan_12',['RESP_TYPE_SCAN',['../_co_v_a_c_i_e_l__lidar_8h.html#a49cb399f815ef78959aee0b4c6ac2a12',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5fscan_5fexpress_5fdense_13',['RESP_TYPE_SCAN_EXPRESS_DENSE',['../_co_v_a_c_i_e_l__lidar_8h.html#a5bcdc114e1c39e762ce8a16e42ca3cbc',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5fscan_5fexpress_5fextend_14',['RESP_TYPE_SCAN_EXPRESS_EXTEND',['../_co_v_a_c_i_e_l__lidar_8h.html#a00d9ae927381dcb617aadf55c1a033ac',1,'CoVACIEL_lidar.h']]],
+  ['resp_5ftype_5fscan_5fexpress_5flegacy_15',['RESP_TYPE_SCAN_EXPRESS_LEGACY',['../_co_v_a_c_i_e_l__lidar_8h.html#ac0f4dc0e7ea831c2c069d2d0786b0ba1',1,'CoVACIEL_lidar.h']]],
+  ['rotationcount_16',['rotationCount',['../class_r_plidar.html#a56e091de96d737c94d9e5df5ce52b9a2',1,'RPlidar']]],
+  ['rotationspeeddt_17',['rotationSpeedDt',['../class_r_plidar.html#aef87265eac46806fbcd0bdce441f95f7',1,'RPlidar']]],
+  ['rotationspeedtimer_18',['rotationSpeedTimer',['../class_r_plidar.html#a71c69767c8a24265eb1cf74667570ffd',1,'RPlidar']]]
+];

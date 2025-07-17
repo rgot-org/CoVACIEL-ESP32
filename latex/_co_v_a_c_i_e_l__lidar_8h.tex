@@ -1,0 +1,455 @@
+\doxysection{src/\+Co\+VACIEL\+\_\+lidar.h File Reference}
+\hypertarget{_co_v_a_c_i_e_l__lidar_8h}{}\label{_co_v_a_c_i_e_l__lidar_8h}\index{src/CoVACIEL\_lidar.h@{src/CoVACIEL\_lidar.h}}
+{\ttfamily \#include "{}Arduino.\+h"{}}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlidar_motor_handler}{lidar\+Motor\+Handler}}
+\item 
+struct \mbox{\hyperlink{structlidar_c_m_d}{lidar\+CMD}}
+\item 
+struct \mbox{\hyperlink{structbyte_array_struct}{byte\+Array\+Struct$<$ array\+Size $>$}}
+\item 
+struct \mbox{\hyperlink{structlidar_resp_descr}{lidar\+Resp\+Descr}}
+\item 
+struct \mbox{\hyperlink{structlidar_standard_data}{lidar\+Standard\+Data}}
+\item 
+struct \mbox{\hyperlink{struct__lidar_express_data_base}{\+\_\+lidar\+Express\+Data\+Base$<$ buffer\+Size $>$}}
+\item 
+struct \mbox{\hyperlink{structlidar_express_data_legacy}{lidar\+Express\+Data\+Legacy}}
+\item 
+struct \mbox{\hyperlink{structlidar_express_data_extended}{lidar\+Express\+Data\+Extended}}
+\item 
+struct \mbox{\hyperlink{structlidar_express_data_dense}{lidar\+Express\+Data\+Dense}}
+\item 
+struct \mbox{\hyperlink{structlidar_get_info_response}{lidar\+Get\+Info\+Response}}
+\item 
+struct \mbox{\hyperlink{structlidar_get_health_response}{lidar\+Get\+Health\+Response}}
+\item 
+struct \mbox{\hyperlink{structlidar_get_samplerate_response}{lidar\+Get\+Samplerate\+Response}}
+\item 
+struct \mbox{\hyperlink{structlidar_get_lidar_conf_response}{lidar\+Get\+Lidar\+Conf\+Response}}
+\item 
+class \mbox{\hyperlink{class_r_plidar}{RPlidar}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ad03616d28c5da016fed9e40708c292b8}{lidar\+Concole}}~Serial
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a27c6eaad5cad56a1213e59302456ba5f}{CMD\+\_\+\+START\+\_\+\+FLAG}} = 0x\+A5
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a995ab99e6a77d19cd9d814c5a9d3617e}{RESP\+\_\+\+DESCR\+\_\+\+START\+\_\+\+FLAGS}} \mbox{[}2\mbox{]} = \{ 0x\+A5, 0x5A \}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a04ec331f6a68168375ae08e4589a1d05}{CMD\+\_\+\+STOP}} = 0x25
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a8dc4fcd0e483e17b81e1bdc5ea851712}{CMD\+\_\+\+RESET}} = 0x40
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a55106a635d9f018403142a01a104e78e}{CMD\+\_\+\+SCAN}} = 0x20
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a8a92d6d246247ecf1a3a4c7e5ffbe57a}{CMD\+\_\+\+EXPRESS\+\_\+\+SCAN}} = 0x82
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a88e22a8ab6adf32e1f6ff8bae4651462}{CMD\+\_\+\+FORCE\+\_\+\+SCAN}} = 0x21
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a0482da223cb7ff73a2749c587e775f3a}{CMD\+\_\+\+GET\+\_\+\+INFO}} = 0x50
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_aef2dd438e8d9fbabd06b02412b3b75d1}{CMD\+\_\+\+GET\+\_\+\+HEALTH}} = 0x52
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_abe1c3b28b54e9e7b53e055346fece07f}{CMD\+\_\+\+GET\+\_\+\+SAMPLERATE}} = 0x59
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a717c7cc97c79cc056bde130d5cf77758}{CMD\+\_\+\+GET\+\_\+\+LIDAR\+\_\+\+CONF}} = 0x84
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_aef9397a1b655bdf90f80b7c5d6ded683}{RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+SINGLE\+\_\+\+RESPONSE}} = 0b00000000
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ae763edf1aabee297aa9e5d450a0e82a0}{RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+MULTI\+\_\+\+RESPONSE}} = 0b01000000
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_aa0ef8382534ccd78e72cc1491040891c}{RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+DATATYPE\+\_\+\+EXPRESS\+\_\+\+LEGACY}} = 0x82
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_aad7c38cc20ce60ff53324095cd603cbe}{RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+DATATYPE\+\_\+\+EXPRESS\+\_\+\+EXTEND}} = 0x84
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a15454b532f7f6fab9610a9019ef0b18b}{RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+DATATYPE\+\_\+\+EXPRESS\+\_\+\+DENSE}} = 0x85
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ac074ec3440a4a0f3fc0a488772068772}{GET\+\_\+\+HEALTH\+\_\+\+STATUS\+\_\+\+GOOD}} = 0
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a49cc39e1aba81b0c92f5ee0ce3793e54}{GET\+\_\+\+HEALTH\+\_\+\+STATUS\+\_\+\+WARNING}} = 1
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a64fefd822ffad8f436ffc72e28665303}{GET\+\_\+\+HEALTH\+\_\+\+STATUS\+\_\+\+ERROR}} = 2
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a863b19e2199212eed7c8ca6ecfe83214}{GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+COUNT}} = 0x70
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a1c738ca46f44d415e0c55be4912830cf}{GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+SAMPLETIME}} = 0x71
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_acc92dc8d9efb64f6713fab814a859341}{GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+MAX\+\_\+\+DIST}} = 0x74
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a67157df5bdb7803978cc626853cf427f}{GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE}} = 0x75
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ad4567cb75228c5685ebc4881b0a32ad6}{GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+NAME}} = 0x7F
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a797ab564ebc30473354e7b7cf5ecc021}{GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+TYPICAL}} = 0x7C
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a81f58538a62025e8ae3c06471acf5c47}{CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+STANDARD}} = 0x81
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a24fb1f3f61ac728a0b737d4bb0197213}{CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+EXPRESS}} = 0x82
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_acc3603c9f63c21a740fef888190b88c6}{CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+ULTRA\+\_\+\+CAP}} = 0x83
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a87c9a5ba6c82bc7ac4eee1f608c0a160}{CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+EXPRESS\+\_\+\+EXTEND}} = 0x84
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ab66b17701ea9fef6fefece4e674dc126}{CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+EXPRESS\+\_\+\+DENSE}} = 0x85
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a49cb399f815ef78959aee0b4c6ac2a12}{RESP\+\_\+\+TYPE\+\_\+\+SCAN}} = 0x81
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ac0f4dc0e7ea831c2c069d2d0786b0ba1}{RESP\+\_\+\+TYPE\+\_\+\+SCAN\+\_\+\+EXPRESS\+\_\+\+LEGACY}} = 0x82
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a00d9ae927381dcb617aadf55c1a033ac}{RESP\+\_\+\+TYPE\+\_\+\+SCAN\+\_\+\+EXPRESS\+\_\+\+EXTEND}} = 0x84
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a5bcdc114e1c39e762ce8a16e42ca3cbc}{RESP\+\_\+\+TYPE\+\_\+\+SCAN\+\_\+\+EXPRESS\+\_\+\+DENSE}} = 0x85
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_af66c2d37c08ee81201e5a669b80f8a38}{RESP\+\_\+\+TYPE\+\_\+\+GET\+\_\+\+INFO}} = 0x04
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ad89511e58f5401ce7d5c5ccd3759dfd1}{RESP\+\_\+\+TYPE\+\_\+\+GET\+\_\+\+HEALTH}} = 0x06
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a19d967dd17a0a0e987f99d0bec547573}{RESP\+\_\+\+TYPE\+\_\+\+GET\+\_\+\+SAMPLERATE}} = 0x15
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a5b9fc901d5a2a14b9c16bd7cdb50caa5}{RESP\+\_\+\+TYPE\+\_\+\+GET\+\_\+\+LIDAR\+\_\+\+CONF}} = 0x20
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_abced99bf48277fa7601e74064f501310}{RESP\+\_\+\+TYPE\+\_\+\+INVALID}} = 0x00
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a845b806e788fbaea9017c61e221c4d7d}{EXPRESS\+\_\+\+SCAN\+\_\+\+WORKING\+\_\+\+MODE\+\_\+\+LEGACY}} = 0
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ab3ae402fa06d220fd2021c250c5b537b}{EXPRESS\+\_\+\+SCAN\+\_\+\+WORKING\+\_\+\+MODE\+\_\+\+BOOST}} = 2
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a5dc024b5bdb6ba4a1a59ba33cfad556d}{EXPRESS\+\_\+\+SCAN\+\_\+\+WORKING\+\_\+\+MODE\+\_\+\+SENSITIVITY}} = 3
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_af1486ddcbeba96cd192ba5660a9e9744}{EXPRESS\+\_\+\+SCAN\+\_\+\+WORKING\+\_\+\+MODE\+\_\+\+STABILITY}} = 4
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a91a0485067d65d3047b896ede2a2d50b}{RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+BITS}} = 0b11000000
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_aaff226f856071a031aabd1f1d3291a83}{STANDARD\+\_\+\+DATA\+\_\+\+ROT\+\_\+\+START\+\_\+\+BITS}} = 0b00000011
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a83578c73b905e8fd7510e1ae90613451}{STANDARD\+\_\+\+DATA\+\_\+\+CHECK\+\_\+\+BIT}} = 0b00000001
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a45d615f0ea14dfbcd680844b2735fe39}{EXPRESS\+\_\+\+DATA\+\_\+\+LEGACY\+\_\+\+SYNC\+\_\+\+BITS}} = 0x\+F0
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_aad87166dc47f11fc75b10ff6c4a11b36}{EXPRESS\+\_\+\+DATA\+\_\+\+LEGACY\+\_\+\+ROT\+\_\+\+START\+\_\+\+BIT}} = 0b10000000
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_ad4de61b9ac4027d205fd1143c560e250}{EXPRESS\+\_\+\+DATA\+\_\+\+LEGACY\+\_\+\+DIST\+\_\+\+BITS}} = 0b11111100
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{_co_v_a_c_i_e_l__lidar_8h_a6b6020369e64ce7178f4dbb760ee030b}{EXPRESS\+\_\+\+DATA\+\_\+\+EXTEND\+\_\+\+MAJOR\+\_\+\+BITS}} = 0x0\+FFF
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ad03616d28c5da016fed9e40708c292b8}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!lidarConcole@{lidarConcole}}
+\index{lidarConcole@{lidarConcole}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{lidarConcole}{lidarConcole}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ad03616d28c5da016fed9e40708c292b8} 
+\#define lidar\+Concole~Serial}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a8a92d6d246247ecf1a3a4c7e5ffbe57a}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_EXPRESS\_SCAN@{CMD\_EXPRESS\_SCAN}}
+\index{CMD\_EXPRESS\_SCAN@{CMD\_EXPRESS\_SCAN}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_EXPRESS\_SCAN}{CMD\_EXPRESS\_SCAN}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a8a92d6d246247ecf1a3a4c7e5ffbe57a} 
+const uint8\+\_\+t CMD\+\_\+\+EXPRESS\+\_\+\+SCAN = 0x82}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a88e22a8ab6adf32e1f6ff8bae4651462}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_FORCE\_SCAN@{CMD\_FORCE\_SCAN}}
+\index{CMD\_FORCE\_SCAN@{CMD\_FORCE\_SCAN}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_FORCE\_SCAN}{CMD\_FORCE\_SCAN}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a88e22a8ab6adf32e1f6ff8bae4651462} 
+const uint8\+\_\+t CMD\+\_\+\+FORCE\+\_\+\+SCAN = 0x21}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_aef2dd438e8d9fbabd06b02412b3b75d1}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_GET\_HEALTH@{CMD\_GET\_HEALTH}}
+\index{CMD\_GET\_HEALTH@{CMD\_GET\_HEALTH}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_GET\_HEALTH}{CMD\_GET\_HEALTH}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_aef2dd438e8d9fbabd06b02412b3b75d1} 
+const uint8\+\_\+t CMD\+\_\+\+GET\+\_\+\+HEALTH = 0x52}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a0482da223cb7ff73a2749c587e775f3a}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_GET\_INFO@{CMD\_GET\_INFO}}
+\index{CMD\_GET\_INFO@{CMD\_GET\_INFO}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_GET\_INFO}{CMD\_GET\_INFO}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a0482da223cb7ff73a2749c587e775f3a} 
+const uint8\+\_\+t CMD\+\_\+\+GET\+\_\+\+INFO = 0x50}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a717c7cc97c79cc056bde130d5cf77758}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_GET\_LIDAR\_CONF@{CMD\_GET\_LIDAR\_CONF}}
+\index{CMD\_GET\_LIDAR\_CONF@{CMD\_GET\_LIDAR\_CONF}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_GET\_LIDAR\_CONF}{CMD\_GET\_LIDAR\_CONF}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a717c7cc97c79cc056bde130d5cf77758} 
+const uint8\+\_\+t CMD\+\_\+\+GET\+\_\+\+LIDAR\+\_\+\+CONF = 0x84}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_abe1c3b28b54e9e7b53e055346fece07f}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_GET\_SAMPLERATE@{CMD\_GET\_SAMPLERATE}}
+\index{CMD\_GET\_SAMPLERATE@{CMD\_GET\_SAMPLERATE}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_GET\_SAMPLERATE}{CMD\_GET\_SAMPLERATE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_abe1c3b28b54e9e7b53e055346fece07f} 
+const uint8\+\_\+t CMD\+\_\+\+GET\+\_\+\+SAMPLERATE = 0x59}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a8dc4fcd0e483e17b81e1bdc5ea851712}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_RESET@{CMD\_RESET}}
+\index{CMD\_RESET@{CMD\_RESET}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_RESET}{CMD\_RESET}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a8dc4fcd0e483e17b81e1bdc5ea851712} 
+const uint8\+\_\+t CMD\+\_\+\+RESET = 0x40}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a55106a635d9f018403142a01a104e78e}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_SCAN@{CMD\_SCAN}}
+\index{CMD\_SCAN@{CMD\_SCAN}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_SCAN}{CMD\_SCAN}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a55106a635d9f018403142a01a104e78e} 
+const uint8\+\_\+t CMD\+\_\+\+SCAN = 0x20}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a27c6eaad5cad56a1213e59302456ba5f}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_START\_FLAG@{CMD\_START\_FLAG}}
+\index{CMD\_START\_FLAG@{CMD\_START\_FLAG}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_START\_FLAG}{CMD\_START\_FLAG}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a27c6eaad5cad56a1213e59302456ba5f} 
+const uint8\+\_\+t CMD\+\_\+\+START\+\_\+\+FLAG = 0x\+A5}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a04ec331f6a68168375ae08e4589a1d05}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CMD\_STOP@{CMD\_STOP}}
+\index{CMD\_STOP@{CMD\_STOP}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_STOP}{CMD\_STOP}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a04ec331f6a68168375ae08e4589a1d05} 
+const uint8\+\_\+t CMD\+\_\+\+STOP = 0x25}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a24fb1f3f61ac728a0b737d4bb0197213}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS@{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS}}
+\index{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS@{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS}{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a24fb1f3f61ac728a0b737d4bb0197213} 
+const uint8\+\_\+t CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+EXPRESS = 0x82}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ab66b17701ea9fef6fefece4e674dc126}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_DENSE@{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_DENSE}}
+\index{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_DENSE@{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_DENSE}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_DENSE}{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_DENSE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ab66b17701ea9fef6fefece4e674dc126} 
+const uint8\+\_\+t CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+EXPRESS\+\_\+\+DENSE = 0x85}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a87c9a5ba6c82bc7ac4eee1f608c0a160}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_EXTEND@{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_EXTEND}}
+\index{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_EXTEND@{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_EXTEND}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_EXTEND}{CONF\_SCAN\_MODE\_ANS\_TYPE\_EXPRESS\_EXTEND}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a87c9a5ba6c82bc7ac4eee1f608c0a160} 
+const uint8\+\_\+t CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+EXPRESS\+\_\+\+EXTEND = 0x84}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a81f58538a62025e8ae3c06471acf5c47}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CONF\_SCAN\_MODE\_ANS\_TYPE\_STANDARD@{CONF\_SCAN\_MODE\_ANS\_TYPE\_STANDARD}}
+\index{CONF\_SCAN\_MODE\_ANS\_TYPE\_STANDARD@{CONF\_SCAN\_MODE\_ANS\_TYPE\_STANDARD}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CONF\_SCAN\_MODE\_ANS\_TYPE\_STANDARD}{CONF\_SCAN\_MODE\_ANS\_TYPE\_STANDARD}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a81f58538a62025e8ae3c06471acf5c47} 
+const uint8\+\_\+t CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+STANDARD = 0x81}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_acc3603c9f63c21a740fef888190b88c6}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!CONF\_SCAN\_MODE\_ANS\_TYPE\_ULTRA\_CAP@{CONF\_SCAN\_MODE\_ANS\_TYPE\_ULTRA\_CAP}}
+\index{CONF\_SCAN\_MODE\_ANS\_TYPE\_ULTRA\_CAP@{CONF\_SCAN\_MODE\_ANS\_TYPE\_ULTRA\_CAP}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{CONF\_SCAN\_MODE\_ANS\_TYPE\_ULTRA\_CAP}{CONF\_SCAN\_MODE\_ANS\_TYPE\_ULTRA\_CAP}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_acc3603c9f63c21a740fef888190b88c6} 
+const uint8\+\_\+t CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE\+\_\+\+ULTRA\+\_\+\+CAP = 0x83}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a6b6020369e64ce7178f4dbb760ee030b}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!EXPRESS\_DATA\_EXTEND\_MAJOR\_BITS@{EXPRESS\_DATA\_EXTEND\_MAJOR\_BITS}}
+\index{EXPRESS\_DATA\_EXTEND\_MAJOR\_BITS@{EXPRESS\_DATA\_EXTEND\_MAJOR\_BITS}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{EXPRESS\_DATA\_EXTEND\_MAJOR\_BITS}{EXPRESS\_DATA\_EXTEND\_MAJOR\_BITS}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a6b6020369e64ce7178f4dbb760ee030b} 
+const uint16\+\_\+t EXPRESS\+\_\+\+DATA\+\_\+\+EXTEND\+\_\+\+MAJOR\+\_\+\+BITS = 0x0\+FFF}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ad4de61b9ac4027d205fd1143c560e250}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!EXPRESS\_DATA\_LEGACY\_DIST\_BITS@{EXPRESS\_DATA\_LEGACY\_DIST\_BITS}}
+\index{EXPRESS\_DATA\_LEGACY\_DIST\_BITS@{EXPRESS\_DATA\_LEGACY\_DIST\_BITS}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{EXPRESS\_DATA\_LEGACY\_DIST\_BITS}{EXPRESS\_DATA\_LEGACY\_DIST\_BITS}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ad4de61b9ac4027d205fd1143c560e250} 
+const uint8\+\_\+t EXPRESS\+\_\+\+DATA\+\_\+\+LEGACY\+\_\+\+DIST\+\_\+\+BITS = 0b11111100}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_aad87166dc47f11fc75b10ff6c4a11b36}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!EXPRESS\_DATA\_LEGACY\_ROT\_START\_BIT@{EXPRESS\_DATA\_LEGACY\_ROT\_START\_BIT}}
+\index{EXPRESS\_DATA\_LEGACY\_ROT\_START\_BIT@{EXPRESS\_DATA\_LEGACY\_ROT\_START\_BIT}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{EXPRESS\_DATA\_LEGACY\_ROT\_START\_BIT}{EXPRESS\_DATA\_LEGACY\_ROT\_START\_BIT}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_aad87166dc47f11fc75b10ff6c4a11b36} 
+const uint8\+\_\+t EXPRESS\+\_\+\+DATA\+\_\+\+LEGACY\+\_\+\+ROT\+\_\+\+START\+\_\+\+BIT = 0b10000000}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a45d615f0ea14dfbcd680844b2735fe39}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!EXPRESS\_DATA\_LEGACY\_SYNC\_BITS@{EXPRESS\_DATA\_LEGACY\_SYNC\_BITS}}
+\index{EXPRESS\_DATA\_LEGACY\_SYNC\_BITS@{EXPRESS\_DATA\_LEGACY\_SYNC\_BITS}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{EXPRESS\_DATA\_LEGACY\_SYNC\_BITS}{EXPRESS\_DATA\_LEGACY\_SYNC\_BITS}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a45d615f0ea14dfbcd680844b2735fe39} 
+const uint8\+\_\+t EXPRESS\+\_\+\+DATA\+\_\+\+LEGACY\+\_\+\+SYNC\+\_\+\+BITS = 0x\+F0}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ab3ae402fa06d220fd2021c250c5b537b}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!EXPRESS\_SCAN\_WORKING\_MODE\_BOOST@{EXPRESS\_SCAN\_WORKING\_MODE\_BOOST}}
+\index{EXPRESS\_SCAN\_WORKING\_MODE\_BOOST@{EXPRESS\_SCAN\_WORKING\_MODE\_BOOST}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{EXPRESS\_SCAN\_WORKING\_MODE\_BOOST}{EXPRESS\_SCAN\_WORKING\_MODE\_BOOST}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ab3ae402fa06d220fd2021c250c5b537b} 
+const uint8\+\_\+t EXPRESS\+\_\+\+SCAN\+\_\+\+WORKING\+\_\+\+MODE\+\_\+\+BOOST = 2}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a845b806e788fbaea9017c61e221c4d7d}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!EXPRESS\_SCAN\_WORKING\_MODE\_LEGACY@{EXPRESS\_SCAN\_WORKING\_MODE\_LEGACY}}
+\index{EXPRESS\_SCAN\_WORKING\_MODE\_LEGACY@{EXPRESS\_SCAN\_WORKING\_MODE\_LEGACY}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{EXPRESS\_SCAN\_WORKING\_MODE\_LEGACY}{EXPRESS\_SCAN\_WORKING\_MODE\_LEGACY}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a845b806e788fbaea9017c61e221c4d7d} 
+const uint8\+\_\+t EXPRESS\+\_\+\+SCAN\+\_\+\+WORKING\+\_\+\+MODE\+\_\+\+LEGACY = 0}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a5dc024b5bdb6ba4a1a59ba33cfad556d}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!EXPRESS\_SCAN\_WORKING\_MODE\_SENSITIVITY@{EXPRESS\_SCAN\_WORKING\_MODE\_SENSITIVITY}}
+\index{EXPRESS\_SCAN\_WORKING\_MODE\_SENSITIVITY@{EXPRESS\_SCAN\_WORKING\_MODE\_SENSITIVITY}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{EXPRESS\_SCAN\_WORKING\_MODE\_SENSITIVITY}{EXPRESS\_SCAN\_WORKING\_MODE\_SENSITIVITY}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a5dc024b5bdb6ba4a1a59ba33cfad556d} 
+const uint8\+\_\+t EXPRESS\+\_\+\+SCAN\+\_\+\+WORKING\+\_\+\+MODE\+\_\+\+SENSITIVITY = 3}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_af1486ddcbeba96cd192ba5660a9e9744}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!EXPRESS\_SCAN\_WORKING\_MODE\_STABILITY@{EXPRESS\_SCAN\_WORKING\_MODE\_STABILITY}}
+\index{EXPRESS\_SCAN\_WORKING\_MODE\_STABILITY@{EXPRESS\_SCAN\_WORKING\_MODE\_STABILITY}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{EXPRESS\_SCAN\_WORKING\_MODE\_STABILITY}{EXPRESS\_SCAN\_WORKING\_MODE\_STABILITY}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_af1486ddcbeba96cd192ba5660a9e9744} 
+const uint8\+\_\+t EXPRESS\+\_\+\+SCAN\+\_\+\+WORKING\+\_\+\+MODE\+\_\+\+STABILITY = 4}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a67157df5bdb7803978cc626853cf427f}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_CONF\_SCAN\_MODE\_ANS\_TYPE@{GET\_CONF\_SCAN\_MODE\_ANS\_TYPE}}
+\index{GET\_CONF\_SCAN\_MODE\_ANS\_TYPE@{GET\_CONF\_SCAN\_MODE\_ANS\_TYPE}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_CONF\_SCAN\_MODE\_ANS\_TYPE}{GET\_CONF\_SCAN\_MODE\_ANS\_TYPE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a67157df5bdb7803978cc626853cf427f} 
+const uint8\+\_\+t GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+ANS\+\_\+\+TYPE = 0x75}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a863b19e2199212eed7c8ca6ecfe83214}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_CONF\_SCAN\_MODE\_COUNT@{GET\_CONF\_SCAN\_MODE\_COUNT}}
+\index{GET\_CONF\_SCAN\_MODE\_COUNT@{GET\_CONF\_SCAN\_MODE\_COUNT}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_CONF\_SCAN\_MODE\_COUNT}{GET\_CONF\_SCAN\_MODE\_COUNT}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a863b19e2199212eed7c8ca6ecfe83214} 
+const uint8\+\_\+t GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+COUNT = 0x70}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_acc92dc8d9efb64f6713fab814a859341}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_CONF\_SCAN\_MODE\_MAX\_DIST@{GET\_CONF\_SCAN\_MODE\_MAX\_DIST}}
+\index{GET\_CONF\_SCAN\_MODE\_MAX\_DIST@{GET\_CONF\_SCAN\_MODE\_MAX\_DIST}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_CONF\_SCAN\_MODE\_MAX\_DIST}{GET\_CONF\_SCAN\_MODE\_MAX\_DIST}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_acc92dc8d9efb64f6713fab814a859341} 
+const uint8\+\_\+t GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+MAX\+\_\+\+DIST = 0x74}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ad4567cb75228c5685ebc4881b0a32ad6}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_CONF\_SCAN\_MODE\_NAME@{GET\_CONF\_SCAN\_MODE\_NAME}}
+\index{GET\_CONF\_SCAN\_MODE\_NAME@{GET\_CONF\_SCAN\_MODE\_NAME}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_CONF\_SCAN\_MODE\_NAME}{GET\_CONF\_SCAN\_MODE\_NAME}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ad4567cb75228c5685ebc4881b0a32ad6} 
+const uint8\+\_\+t GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+NAME = 0x7F}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a1c738ca46f44d415e0c55be4912830cf}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_CONF\_SCAN\_MODE\_SAMPLETIME@{GET\_CONF\_SCAN\_MODE\_SAMPLETIME}}
+\index{GET\_CONF\_SCAN\_MODE\_SAMPLETIME@{GET\_CONF\_SCAN\_MODE\_SAMPLETIME}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_CONF\_SCAN\_MODE\_SAMPLETIME}{GET\_CONF\_SCAN\_MODE\_SAMPLETIME}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a1c738ca46f44d415e0c55be4912830cf} 
+const uint8\+\_\+t GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+SAMPLETIME = 0x71}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a797ab564ebc30473354e7b7cf5ecc021}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_CONF\_SCAN\_MODE\_TYPICAL@{GET\_CONF\_SCAN\_MODE\_TYPICAL}}
+\index{GET\_CONF\_SCAN\_MODE\_TYPICAL@{GET\_CONF\_SCAN\_MODE\_TYPICAL}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_CONF\_SCAN\_MODE\_TYPICAL}{GET\_CONF\_SCAN\_MODE\_TYPICAL}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a797ab564ebc30473354e7b7cf5ecc021} 
+const uint8\+\_\+t GET\+\_\+\+CONF\+\_\+\+SCAN\+\_\+\+MODE\+\_\+\+TYPICAL = 0x7C}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a64fefd822ffad8f436ffc72e28665303}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_HEALTH\_STATUS\_ERROR@{GET\_HEALTH\_STATUS\_ERROR}}
+\index{GET\_HEALTH\_STATUS\_ERROR@{GET\_HEALTH\_STATUS\_ERROR}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_HEALTH\_STATUS\_ERROR}{GET\_HEALTH\_STATUS\_ERROR}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a64fefd822ffad8f436ffc72e28665303} 
+const uint8\+\_\+t GET\+\_\+\+HEALTH\+\_\+\+STATUS\+\_\+\+ERROR = 2}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ac074ec3440a4a0f3fc0a488772068772}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_HEALTH\_STATUS\_GOOD@{GET\_HEALTH\_STATUS\_GOOD}}
+\index{GET\_HEALTH\_STATUS\_GOOD@{GET\_HEALTH\_STATUS\_GOOD}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_HEALTH\_STATUS\_GOOD}{GET\_HEALTH\_STATUS\_GOOD}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ac074ec3440a4a0f3fc0a488772068772} 
+const uint8\+\_\+t GET\+\_\+\+HEALTH\+\_\+\+STATUS\+\_\+\+GOOD = 0}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a49cc39e1aba81b0c92f5ee0ce3793e54}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!GET\_HEALTH\_STATUS\_WARNING@{GET\_HEALTH\_STATUS\_WARNING}}
+\index{GET\_HEALTH\_STATUS\_WARNING@{GET\_HEALTH\_STATUS\_WARNING}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{GET\_HEALTH\_STATUS\_WARNING}{GET\_HEALTH\_STATUS\_WARNING}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a49cc39e1aba81b0c92f5ee0ce3793e54} 
+const uint8\+\_\+t GET\+\_\+\+HEALTH\+\_\+\+STATUS\+\_\+\+WARNING = 1}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a91a0485067d65d3047b896ede2a2d50b}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_DESCR\_SENDMODE\_BITS@{RESP\_DESCR\_SENDMODE\_BITS}}
+\index{RESP\_DESCR\_SENDMODE\_BITS@{RESP\_DESCR\_SENDMODE\_BITS}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_DESCR\_SENDMODE\_BITS}{RESP\_DESCR\_SENDMODE\_BITS}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a91a0485067d65d3047b896ede2a2d50b} 
+const uint8\+\_\+t RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+BITS = 0b11000000}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a15454b532f7f6fab9610a9019ef0b18b}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_DENSE@{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_DENSE}}
+\index{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_DENSE@{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_DENSE}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_DENSE}{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_DENSE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a15454b532f7f6fab9610a9019ef0b18b} 
+const uint8\+\_\+t RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+DATATYPE\+\_\+\+EXPRESS\+\_\+\+DENSE = 0x85}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_aad7c38cc20ce60ff53324095cd603cbe}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_EXTEND@{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_EXTEND}}
+\index{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_EXTEND@{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_EXTEND}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_EXTEND}{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_EXTEND}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_aad7c38cc20ce60ff53324095cd603cbe} 
+const uint8\+\_\+t RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+DATATYPE\+\_\+\+EXPRESS\+\_\+\+EXTEND = 0x84}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_aa0ef8382534ccd78e72cc1491040891c}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_LEGACY@{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_LEGACY}}
+\index{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_LEGACY@{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_LEGACY}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_LEGACY}{RESP\_DESCR\_SENDMODE\_DATATYPE\_EXPRESS\_LEGACY}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_aa0ef8382534ccd78e72cc1491040891c} 
+const uint8\+\_\+t RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+DATATYPE\+\_\+\+EXPRESS\+\_\+\+LEGACY = 0x82}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ae763edf1aabee297aa9e5d450a0e82a0}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_DESCR\_SENDMODE\_MULTI\_RESPONSE@{RESP\_DESCR\_SENDMODE\_MULTI\_RESPONSE}}
+\index{RESP\_DESCR\_SENDMODE\_MULTI\_RESPONSE@{RESP\_DESCR\_SENDMODE\_MULTI\_RESPONSE}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_DESCR\_SENDMODE\_MULTI\_RESPONSE}{RESP\_DESCR\_SENDMODE\_MULTI\_RESPONSE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ae763edf1aabee297aa9e5d450a0e82a0} 
+const uint8\+\_\+t RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+MULTI\+\_\+\+RESPONSE = 0b01000000}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_aef9397a1b655bdf90f80b7c5d6ded683}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_DESCR\_SENDMODE\_SINGLE\_RESPONSE@{RESP\_DESCR\_SENDMODE\_SINGLE\_RESPONSE}}
+\index{RESP\_DESCR\_SENDMODE\_SINGLE\_RESPONSE@{RESP\_DESCR\_SENDMODE\_SINGLE\_RESPONSE}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_DESCR\_SENDMODE\_SINGLE\_RESPONSE}{RESP\_DESCR\_SENDMODE\_SINGLE\_RESPONSE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_aef9397a1b655bdf90f80b7c5d6ded683} 
+const uint8\+\_\+t RESP\+\_\+\+DESCR\+\_\+\+SENDMODE\+\_\+\+SINGLE\+\_\+\+RESPONSE = 0b00000000}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a995ab99e6a77d19cd9d814c5a9d3617e}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_DESCR\_START\_FLAGS@{RESP\_DESCR\_START\_FLAGS}}
+\index{RESP\_DESCR\_START\_FLAGS@{RESP\_DESCR\_START\_FLAGS}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_DESCR\_START\_FLAGS}{RESP\_DESCR\_START\_FLAGS}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a995ab99e6a77d19cd9d814c5a9d3617e} 
+const uint8\+\_\+t RESP\+\_\+\+DESCR\+\_\+\+START\+\_\+\+FLAGS\mbox{[}2\mbox{]} = \{ 0x\+A5, 0x5A \}}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ad89511e58f5401ce7d5c5ccd3759dfd1}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_GET\_HEALTH@{RESP\_TYPE\_GET\_HEALTH}}
+\index{RESP\_TYPE\_GET\_HEALTH@{RESP\_TYPE\_GET\_HEALTH}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_GET\_HEALTH}{RESP\_TYPE\_GET\_HEALTH}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ad89511e58f5401ce7d5c5ccd3759dfd1} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+GET\+\_\+\+HEALTH = 0x06}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_af66c2d37c08ee81201e5a669b80f8a38}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_GET\_INFO@{RESP\_TYPE\_GET\_INFO}}
+\index{RESP\_TYPE\_GET\_INFO@{RESP\_TYPE\_GET\_INFO}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_GET\_INFO}{RESP\_TYPE\_GET\_INFO}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_af66c2d37c08ee81201e5a669b80f8a38} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+GET\+\_\+\+INFO = 0x04}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a5b9fc901d5a2a14b9c16bd7cdb50caa5}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_GET\_LIDAR\_CONF@{RESP\_TYPE\_GET\_LIDAR\_CONF}}
+\index{RESP\_TYPE\_GET\_LIDAR\_CONF@{RESP\_TYPE\_GET\_LIDAR\_CONF}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_GET\_LIDAR\_CONF}{RESP\_TYPE\_GET\_LIDAR\_CONF}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a5b9fc901d5a2a14b9c16bd7cdb50caa5} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+GET\+\_\+\+LIDAR\+\_\+\+CONF = 0x20}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a19d967dd17a0a0e987f99d0bec547573}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_GET\_SAMPLERATE@{RESP\_TYPE\_GET\_SAMPLERATE}}
+\index{RESP\_TYPE\_GET\_SAMPLERATE@{RESP\_TYPE\_GET\_SAMPLERATE}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_GET\_SAMPLERATE}{RESP\_TYPE\_GET\_SAMPLERATE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a19d967dd17a0a0e987f99d0bec547573} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+GET\+\_\+\+SAMPLERATE = 0x15}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_abced99bf48277fa7601e74064f501310}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_INVALID@{RESP\_TYPE\_INVALID}}
+\index{RESP\_TYPE\_INVALID@{RESP\_TYPE\_INVALID}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_INVALID}{RESP\_TYPE\_INVALID}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_abced99bf48277fa7601e74064f501310} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+INVALID = 0x00}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a49cb399f815ef78959aee0b4c6ac2a12}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_SCAN@{RESP\_TYPE\_SCAN}}
+\index{RESP\_TYPE\_SCAN@{RESP\_TYPE\_SCAN}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_SCAN}{RESP\_TYPE\_SCAN}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a49cb399f815ef78959aee0b4c6ac2a12} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+SCAN = 0x81}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a5bcdc114e1c39e762ce8a16e42ca3cbc}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_SCAN\_EXPRESS\_DENSE@{RESP\_TYPE\_SCAN\_EXPRESS\_DENSE}}
+\index{RESP\_TYPE\_SCAN\_EXPRESS\_DENSE@{RESP\_TYPE\_SCAN\_EXPRESS\_DENSE}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_SCAN\_EXPRESS\_DENSE}{RESP\_TYPE\_SCAN\_EXPRESS\_DENSE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a5bcdc114e1c39e762ce8a16e42ca3cbc} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+SCAN\+\_\+\+EXPRESS\+\_\+\+DENSE = 0x85}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a00d9ae927381dcb617aadf55c1a033ac}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_SCAN\_EXPRESS\_EXTEND@{RESP\_TYPE\_SCAN\_EXPRESS\_EXTEND}}
+\index{RESP\_TYPE\_SCAN\_EXPRESS\_EXTEND@{RESP\_TYPE\_SCAN\_EXPRESS\_EXTEND}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_SCAN\_EXPRESS\_EXTEND}{RESP\_TYPE\_SCAN\_EXPRESS\_EXTEND}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a00d9ae927381dcb617aadf55c1a033ac} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+SCAN\+\_\+\+EXPRESS\+\_\+\+EXTEND = 0x84}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_ac0f4dc0e7ea831c2c069d2d0786b0ba1}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!RESP\_TYPE\_SCAN\_EXPRESS\_LEGACY@{RESP\_TYPE\_SCAN\_EXPRESS\_LEGACY}}
+\index{RESP\_TYPE\_SCAN\_EXPRESS\_LEGACY@{RESP\_TYPE\_SCAN\_EXPRESS\_LEGACY}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{RESP\_TYPE\_SCAN\_EXPRESS\_LEGACY}{RESP\_TYPE\_SCAN\_EXPRESS\_LEGACY}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_ac0f4dc0e7ea831c2c069d2d0786b0ba1} 
+const uint8\+\_\+t RESP\+\_\+\+TYPE\+\_\+\+SCAN\+\_\+\+EXPRESS\+\_\+\+LEGACY = 0x82}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_a83578c73b905e8fd7510e1ae90613451}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!STANDARD\_DATA\_CHECK\_BIT@{STANDARD\_DATA\_CHECK\_BIT}}
+\index{STANDARD\_DATA\_CHECK\_BIT@{STANDARD\_DATA\_CHECK\_BIT}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{STANDARD\_DATA\_CHECK\_BIT}{STANDARD\_DATA\_CHECK\_BIT}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_a83578c73b905e8fd7510e1ae90613451} 
+const uint8\+\_\+t STANDARD\+\_\+\+DATA\+\_\+\+CHECK\+\_\+\+BIT = 0b00000001}
+
+\Hypertarget{_co_v_a_c_i_e_l__lidar_8h_aaff226f856071a031aabd1f1d3291a83}\index{CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}!STANDARD\_DATA\_ROT\_START\_BITS@{STANDARD\_DATA\_ROT\_START\_BITS}}
+\index{STANDARD\_DATA\_ROT\_START\_BITS@{STANDARD\_DATA\_ROT\_START\_BITS}!CoVACIEL\_lidar.h@{CoVACIEL\_lidar.h}}
+\doxysubsubsection{\texorpdfstring{STANDARD\_DATA\_ROT\_START\_BITS}{STANDARD\_DATA\_ROT\_START\_BITS}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l__lidar_8h_aaff226f856071a031aabd1f1d3291a83} 
+const uint8\+\_\+t STANDARD\+\_\+\+DATA\+\_\+\+ROT\+\_\+\+START\+\_\+\+BITS = 0b00000011}
+

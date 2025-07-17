@@ -1,0 +1,158 @@
+\doxysection{Co\+VACIEL\+\_\+\+CAN.\+h}
+\hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_source}{}\label{_co_v_a_c_i_e_l___c_a_n_8h_source}\index{src/CoVACIEL\_CAN.h@{src/CoVACIEL\_CAN.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ CoVACIEL\_CAN.h}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#if\ defined(ARDUINO)\ \&\&\ ARDUINO\ >=\ 100}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}arduino.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}WProgram.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <ArduinoJson.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <ESP32-\/TWAI-\/CAN.hpp>}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\#define\ LOG\_COVACIEL\ Serial.printf}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ CAN\_ID\_PROPULSION\ 0x660}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ CAN\_ID\_VITESSE\ 0x662}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ CAN\_ID\_DIRECTION\ 0x664}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ CAN\_ID\_AVANT\ 0x666}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ CAN\_ID\_ARRIERE\ 0x667}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ CAN\_ID\_AVANT\_EXT\ 0x0668}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ DISTANCE\_AVANT\ 11}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ DISTANCE\_AV\_GAUCHE\_45\ 9}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ DISTANCE\_AV\_GAUCHE\_90\ 7}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ DISTANCE\_AV\_DROITE\_45\ 13}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ DISTANCE\_AV\_DROITE\_90\ 15}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ DISTANCE\_AR\ 0}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ DISTANCE\_AR\_GAUCHE\ 20}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ DISTANCE\_AR\_DROITE\ 3}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ NB\_SECTEURS\ 23}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{enum}\ CommandeDirection}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ gauche,}
+\DoxyCodeLine{00032\ \ \ \ \ droit,}
+\DoxyCodeLine{00033\ \ \ \ \ devant}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ \textcolor{keyword}{enum}\ CommandePropulsion}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ accelerer,}
+\DoxyCodeLine{00038\ \ \ \ \ ralentir,}
+\DoxyCodeLine{00039\ \ \ \ \ stop,}
+\DoxyCodeLine{00040\ \ \ \ \ reculer}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{enum}\ Can\_id\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ PROPULSION,}
+\DoxyCodeLine{00044\ \ \ \ \ DIRECTION,}
+\DoxyCodeLine{00045\ \ \ \ \ AVANT,}
+\DoxyCodeLine{00046\ \ \ \ \ ARRIERE,}
+\DoxyCodeLine{00047\ \ \ \ \ AVANT\_EXT}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n}{CoVACIEL\_CAN}}\ :\ \textcolor{keyword}{public}\ TwaiCAN}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ CanFrame\ CANMessages[5];}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a402b42be699927a11027361689737ee3}{initialize}}(uint8\_t\ rx,\ uint8\_t\ tx);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a5c859294b47769156cd7750fc5418cba}{updateRx}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_afbc1aaea2afa162c403698b20300e289}{updateTx}}(\textcolor{keywordtype}{int}\ canId\ =\ 0);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a2f98b93fd25f9f1b54aaed4a021b4ca2}{getPropulsion}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a13e738f6790c6e4d68464599bd80ef78}{getDirection}}();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a807cbc4f2b9f1706d670deebfe7089df}{getDistanceAvant}}();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_aea9a2ef1098255a61203da33a9b5f876}{getDistAvDroite45}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_aa3ebb8f892126ef2dbb10e7617ea0a37}{getDistAvGauche45}}();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a17b1e69bc470888a4971a179f8a2fc0e}{getDistanceArriere}}();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a17cdb575813a908d1010823635da4317}{getVitesse}}();}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_abd727380b70a3c08632aa120921b4f09}{getAngleDirection}}();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ String\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a180273cee801ed053f5e982fc1f46ad8}{getPropulsionStr}}();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00134\ \ \ \ \ String\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a503bedf19d9fe2e408e713e3a49de2aa}{getDirectionStr}}();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{int}\ getDistAvDroite90();}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{int}\ getDistAvGauche90();}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{int}\ getDistanceArGauche();}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{int}\ getDistanceArDroite();}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_aa8baa3364e5635b37103a6f22031410c}{getDistance}}(\textcolor{keywordtype}{byte}\ secteur);\ \textcolor{comment}{//\ secteur\ est\ compris\ entre\ 0\ et\ 22}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{\ \ \ \ /*********************************************************************/}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SETTERS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00150\ \textcolor{comment}{\ \ \ \ /*********************************************************************/}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_ae426388fd222f4ea625904bee80299b3}{setDirection}}(\textcolor{keywordtype}{byte}\ commande);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a2dbdf943d520ce6dc53a2aa23ade9060}{setPropulsion}}(\textcolor{keywordtype}{byte}\ commande);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_aac7fd048066ec5066ca11094a75000d1}{setDistAv}}(uint16\_t\ mm,\ \textcolor{keywordtype}{bool}\ send2canbus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a6aba6b31d65ae748aceaabe88d9fb055}{setDistAvDroite45}}(uint16\_t\ mm,\ \textcolor{keywordtype}{bool}\ send2canbus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a0661b988b3a263c54b13c1f00cc3eaa0}{setDistAvGauche45}}(uint16\_t\ mm,\ \textcolor{keywordtype}{bool}\ send2canbus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a73020eaff6d080bb7dcbeae2b2448631}{setDistAr}}(uint16\_t\ mm,\ \textcolor{keywordtype}{bool}\ send2canbus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{bool}\ setDistAvDroite90(uint16\_t\ mm,\ \textcolor{keywordtype}{bool}\ send2canbus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{bool}\ setDistAvGauche90(uint16\_t\ mm,\ \textcolor{keywordtype}{bool}\ send2canbus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{bool}\ setDistArDroite(uint16\_t\ mm,\ \textcolor{keywordtype}{bool}\ send2canbus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{bool}\ setDistArGauche(uint16\_t\ mm,\ \textcolor{keywordtype}{bool}\ send2canbus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a486682200267877309212b70fdd43678}{setAngleDirection}}(\textcolor{keywordtype}{int}\ angle);}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_acf56a6c10431ce4058382e874a435cce}{setDistance}}(\textcolor{keywordtype}{int}*\ distance,\ \textcolor{keywordtype}{byte}\ length);}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a5d224d4b78303fd10d823f372379e448}{setDistanceJson}}(String\ jsonDistance);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n_a7872524402f7585e2d77b1748889e1b5}{setVitesse}}(\textcolor{keywordtype}{int}\ vitesse);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{int}\ distance[NB\_SECTEURS]\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{void}\ canBus2SerialJson();}
+\DoxyCodeLine{00246\ \ \ \ \ String\ parseCanFrame2json();}
+\DoxyCodeLine{00247\ \ \ \ \ String\ parseDistancesJson();}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{int}\ \_lastMessage\ =\ 0;}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{int}\ \_newMessage4Json\ =\ 0;}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordtype}{byte}\ \_propulsion\ =\ 0;}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordtype}{byte}\ \_direction\ =\ 0;}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordtype}{int}\ \_distAvant\ =\ 0;}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{int}\ \_distAvDroite45\ =\ 0;}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordtype}{int}\ \_distAvDroite90\ =\ 0;}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{int}\ \_distAvGauche45\ =\ 0;}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{int}\ \_distAvGauche90\ =\ 0;}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{int}\ \_distAr\ =\ 0;}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordtype}{int}\ \_distArDroite\ =\ 0;}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordtype}{int}\ \_distArGauche\ =\ 0;}
+\DoxyCodeLine{00266\ \ \ \ \ String\ \_parsedDataJson\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00267\ \ \ \ \ int16\_t\ \_vitesse;}
+\DoxyCodeLine{00268\ \ \ \ \ int16\_t\ \_angle;}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{bool}\ sendToCANBus(\textcolor{keywordtype}{int}\ can\_id);}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{void}\ parseData();}
+\DoxyCodeLine{00272\ \};}
+\DoxyCodeLine{00273\ }
+
+\end{DoxyCode}

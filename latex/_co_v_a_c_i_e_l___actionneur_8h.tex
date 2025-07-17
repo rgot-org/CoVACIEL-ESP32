@@ -1,0 +1,70 @@
+\doxysection{src/\+Co\+VACIEL\+\_\+\+Actionneur.h File Reference}
+\hypertarget{_co_v_a_c_i_e_l___actionneur_8h}{}\label{_co_v_a_c_i_e_l___actionneur_8h}\index{src/CoVACIEL\_Actionneur.h@{src/CoVACIEL\_Actionneur.h}}
+{\ttfamily \#include $<$Preferences.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_co_v_a_c_i_e_l__direction}{Co\+VACIEL\+\_\+direction}}
+\item 
+class \mbox{\hyperlink{class_co_v_a_c_i_e_l__propulsion}{Co\+VACIEL\+\_\+propulsion}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___actionneur_8h_a95d55ebfa2f2f1bd14867ad6a6cc9bfb}{RESOLUTION}}~14
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___actionneur_8h_a4950944c99491ffaa5e74e0aa5c8eb6c}{SERVO\+\_\+\+BASE\+\_\+\+FREQ}}~50
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___actionneur_8h_a2b29e23023616cd01004f142d7cfe7bf}{DIRECTION\+\_\+\+CHANNEL}}~0
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___actionneur_8h_af1ad03ed1ddc5c268096a76a117ef35e}{PROPULSION\+\_\+\+CHANNEL}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{_co_v_a_c_i_e_l___actionneur_8h_aa0eb3bd21851903b36092cb23366477c}{pleine\+Echelle}} = pow(2, \mbox{\hyperlink{_co_v_a_c_i_e_l___actionneur_8h_a95d55ebfa2f2f1bd14867ad6a6cc9bfb}{RESOLUTION}}) -\/ 1
+\item 
+const int \mbox{\hyperlink{_co_v_a_c_i_e_l___actionneur_8h_a8bdebabb6758e9a9251aaee6db90aea7}{angle\+Degre\+Max}} = 18
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_co_v_a_c_i_e_l___actionneur_8h_a2b29e23023616cd01004f142d7cfe7bf}\index{CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}!DIRECTION\_CHANNEL@{DIRECTION\_CHANNEL}}
+\index{DIRECTION\_CHANNEL@{DIRECTION\_CHANNEL}!CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}}
+\doxysubsubsection{\texorpdfstring{DIRECTION\_CHANNEL}{DIRECTION\_CHANNEL}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___actionneur_8h_a2b29e23023616cd01004f142d7cfe7bf} 
+\#define DIRECTION\+\_\+\+CHANNEL~0}
+
+\Hypertarget{_co_v_a_c_i_e_l___actionneur_8h_af1ad03ed1ddc5c268096a76a117ef35e}\index{CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}!PROPULSION\_CHANNEL@{PROPULSION\_CHANNEL}}
+\index{PROPULSION\_CHANNEL@{PROPULSION\_CHANNEL}!CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}}
+\doxysubsubsection{\texorpdfstring{PROPULSION\_CHANNEL}{PROPULSION\_CHANNEL}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___actionneur_8h_af1ad03ed1ddc5c268096a76a117ef35e} 
+\#define PROPULSION\+\_\+\+CHANNEL~1}
+
+\Hypertarget{_co_v_a_c_i_e_l___actionneur_8h_a95d55ebfa2f2f1bd14867ad6a6cc9bfb}\index{CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}!RESOLUTION@{RESOLUTION}}
+\index{RESOLUTION@{RESOLUTION}!CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}}
+\doxysubsubsection{\texorpdfstring{RESOLUTION}{RESOLUTION}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___actionneur_8h_a95d55ebfa2f2f1bd14867ad6a6cc9bfb} 
+\#define RESOLUTION~14}
+
+\Hypertarget{_co_v_a_c_i_e_l___actionneur_8h_a4950944c99491ffaa5e74e0aa5c8eb6c}\index{CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}!SERVO\_BASE\_FREQ@{SERVO\_BASE\_FREQ}}
+\index{SERVO\_BASE\_FREQ@{SERVO\_BASE\_FREQ}!CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}}
+\doxysubsubsection{\texorpdfstring{SERVO\_BASE\_FREQ}{SERVO\_BASE\_FREQ}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___actionneur_8h_a4950944c99491ffaa5e74e0aa5c8eb6c} 
+\#define SERVO\+\_\+\+BASE\+\_\+\+FREQ~50}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_co_v_a_c_i_e_l___actionneur_8h_a8bdebabb6758e9a9251aaee6db90aea7}\index{CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}!angleDegreMax@{angleDegreMax}}
+\index{angleDegreMax@{angleDegreMax}!CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}}
+\doxysubsubsection{\texorpdfstring{angleDegreMax}{angleDegreMax}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___actionneur_8h_a8bdebabb6758e9a9251aaee6db90aea7} 
+const int angle\+Degre\+Max = 18}
+
+\Hypertarget{_co_v_a_c_i_e_l___actionneur_8h_aa0eb3bd21851903b36092cb23366477c}\index{CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}!pleineEchelle@{pleineEchelle}}
+\index{pleineEchelle@{pleineEchelle}!CoVACIEL\_Actionneur.h@{CoVACIEL\_Actionneur.h}}
+\doxysubsubsection{\texorpdfstring{pleineEchelle}{pleineEchelle}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___actionneur_8h_aa0eb3bd21851903b36092cb23366477c} 
+const int pleine\+Echelle = pow(2, \mbox{\hyperlink{_co_v_a_c_i_e_l___actionneur_8h_a95d55ebfa2f2f1bd14867ad6a6cc9bfb}{RESOLUTION}}) -\/ 1}
+

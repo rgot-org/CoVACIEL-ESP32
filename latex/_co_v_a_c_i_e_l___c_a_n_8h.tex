@@ -1,0 +1,234 @@
+\doxysection{src/\+Co\+VACIEL\+\_\+\+CAN.h File Reference}
+\hypertarget{_co_v_a_c_i_e_l___c_a_n_8h}{}\label{_co_v_a_c_i_e_l___c_a_n_8h}\index{src/CoVACIEL\_CAN.h@{src/CoVACIEL\_CAN.h}}
+{\ttfamily \#include "{}WProgram.\+h"{}}\newline
+{\ttfamily \#include $<$Arduino\+Json.\+h$>$}\newline
+{\ttfamily \#include $<$ESP32-\/\+TWAI-\/\+CAN.\+hpp$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_co_v_a_c_i_e_l___c_a_n}{Co\+VACIEL\+\_\+\+CAN}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_aa4620603f2f6af01a40980e5f02a16c4}{CAN\+\_\+\+ID\+\_\+\+PROPULSION}}~0x660
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a8ff96dbfa71bffa2de4ca7a24461da98}{CAN\+\_\+\+ID\+\_\+\+VITESSE}}~0x662
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a5e1d608d01367bd95ee610ad6087948b}{CAN\+\_\+\+ID\+\_\+\+DIRECTION}}~0x664
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a2694de1ab84ddee4e55804fd1bcb5055}{CAN\+\_\+\+ID\+\_\+\+AVANT}}~0x666
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ad9f413a9060fd4a4424d23650787b7ef}{CAN\+\_\+\+ID\+\_\+\+ARRIERE}}~0x667
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ad0abb1151ac339d25c410dc19c282c7f}{CAN\+\_\+\+ID\+\_\+\+AVANT\+\_\+\+EXT}}~0x0668
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a4986950e1be8216e67a81a68c915eeac}{DISTANCE\+\_\+\+AVANT}}~11
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a19fad875a7a232b1a9b401fc96d42464}{DISTANCE\+\_\+\+AV\+\_\+\+GAUCHE\+\_\+45}}~9
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a5a1e7788ca32b23ca6401dc68a8e136f}{DISTANCE\+\_\+\+AV\+\_\+\+GAUCHE\+\_\+90}}~7
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ac4a6b1a7e3b8bc2dd16d404db47c47f9}{DISTANCE\+\_\+\+AV\+\_\+\+DROITE\+\_\+45}}~13
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a77a5289f4b28b45f81d7875048a319cb}{DISTANCE\+\_\+\+AV\+\_\+\+DROITE\+\_\+90}}~15
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_acc499906c596bdeee262b11fab36a932}{DISTANCE\+\_\+\+AR}}~0
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ad63836c07de0f402cbf6d27c5908d9ac}{DISTANCE\+\_\+\+AR\+\_\+\+GAUCHE}}~20
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a94625b41c363567cd509162cb67a3bac}{DISTANCE\+\_\+\+AR\+\_\+\+DROITE}}~3
+\item 
+\#define \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_aecab9d4443da4dd6594c8aae9c74498e}{NB\+\_\+\+SECTEURS}}~23
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225f}{Commande\+Direction}} \{ \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225fa27e0a744152fc87275d593f243e2e784}{gauche}}
+, \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225fa2e6d369300c152a5a872aa08e63c1b79}{droit}}
+, \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225faa6e55c3468aac058a150d27bcca4e5e4}{devant}}
+ \}
+\item 
+enum \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5e}{Commande\+Propulsion}} \{ \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5ea161e81552dd8fae1ece1653c046a9040}{accelerer}}
+, \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5eaa1c711f87ad452428e40c86727462bb2}{ralentir}}
+, \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5ead82a4ca4dc1f04bf9453ad19f9341028}{stop}}
+, \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5eac397e60f2e7bc2c2d7bf619cbbc45ba2}{reculer}}
+ \}
+\item 
+enum \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8}{Can\+\_\+id}} \{ \newline
+\mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a6b273557b39b635aa90ae420976eae52}{PROPULSION}}
+, \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a29e2c300ecd12ceecf4ab3fb87bbdafc}{DIRECTION}}
+, \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a9636f5bb497ae79ecf09091460c096ca}{AVANT}}
+, \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8aa36ffbc408465c298fa641403c91972f}{ARRIERE}}
+, \newline
+\mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8ae992bd8c6ecf4cf68b0533ccca8ea7dc}{AVANT\+\_\+\+EXT}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ad9f413a9060fd4a4424d23650787b7ef}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!CAN\_ID\_ARRIERE@{CAN\_ID\_ARRIERE}}
+\index{CAN\_ID\_ARRIERE@{CAN\_ID\_ARRIERE}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_ID\_ARRIERE}{CAN\_ID\_ARRIERE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_ad9f413a9060fd4a4424d23650787b7ef} 
+\#define CAN\+\_\+\+ID\+\_\+\+ARRIERE~0x667}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a2694de1ab84ddee4e55804fd1bcb5055}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!CAN\_ID\_AVANT@{CAN\_ID\_AVANT}}
+\index{CAN\_ID\_AVANT@{CAN\_ID\_AVANT}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_ID\_AVANT}{CAN\_ID\_AVANT}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a2694de1ab84ddee4e55804fd1bcb5055} 
+\#define CAN\+\_\+\+ID\+\_\+\+AVANT~0x666}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ad0abb1151ac339d25c410dc19c282c7f}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!CAN\_ID\_AVANT\_EXT@{CAN\_ID\_AVANT\_EXT}}
+\index{CAN\_ID\_AVANT\_EXT@{CAN\_ID\_AVANT\_EXT}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_ID\_AVANT\_EXT}{CAN\_ID\_AVANT\_EXT}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_ad0abb1151ac339d25c410dc19c282c7f} 
+\#define CAN\+\_\+\+ID\+\_\+\+AVANT\+\_\+\+EXT~0x0668}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a5e1d608d01367bd95ee610ad6087948b}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!CAN\_ID\_DIRECTION@{CAN\_ID\_DIRECTION}}
+\index{CAN\_ID\_DIRECTION@{CAN\_ID\_DIRECTION}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_ID\_DIRECTION}{CAN\_ID\_DIRECTION}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a5e1d608d01367bd95ee610ad6087948b} 
+\#define CAN\+\_\+\+ID\+\_\+\+DIRECTION~0x664}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_aa4620603f2f6af01a40980e5f02a16c4}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!CAN\_ID\_PROPULSION@{CAN\_ID\_PROPULSION}}
+\index{CAN\_ID\_PROPULSION@{CAN\_ID\_PROPULSION}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_ID\_PROPULSION}{CAN\_ID\_PROPULSION}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_aa4620603f2f6af01a40980e5f02a16c4} 
+\#define CAN\+\_\+\+ID\+\_\+\+PROPULSION~0x660}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a8ff96dbfa71bffa2de4ca7a24461da98}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!CAN\_ID\_VITESSE@{CAN\_ID\_VITESSE}}
+\index{CAN\_ID\_VITESSE@{CAN\_ID\_VITESSE}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_ID\_VITESSE}{CAN\_ID\_VITESSE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a8ff96dbfa71bffa2de4ca7a24461da98} 
+\#define CAN\+\_\+\+ID\+\_\+\+VITESSE~0x662}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_acc499906c596bdeee262b11fab36a932}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DISTANCE\_AR@{DISTANCE\_AR}}
+\index{DISTANCE\_AR@{DISTANCE\_AR}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{DISTANCE\_AR}{DISTANCE\_AR}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_acc499906c596bdeee262b11fab36a932} 
+\#define DISTANCE\+\_\+\+AR~0}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a94625b41c363567cd509162cb67a3bac}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DISTANCE\_AR\_DROITE@{DISTANCE\_AR\_DROITE}}
+\index{DISTANCE\_AR\_DROITE@{DISTANCE\_AR\_DROITE}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{DISTANCE\_AR\_DROITE}{DISTANCE\_AR\_DROITE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a94625b41c363567cd509162cb67a3bac} 
+\#define DISTANCE\+\_\+\+AR\+\_\+\+DROITE~3}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ad63836c07de0f402cbf6d27c5908d9ac}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DISTANCE\_AR\_GAUCHE@{DISTANCE\_AR\_GAUCHE}}
+\index{DISTANCE\_AR\_GAUCHE@{DISTANCE\_AR\_GAUCHE}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{DISTANCE\_AR\_GAUCHE}{DISTANCE\_AR\_GAUCHE}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_ad63836c07de0f402cbf6d27c5908d9ac} 
+\#define DISTANCE\+\_\+\+AR\+\_\+\+GAUCHE~20}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ac4a6b1a7e3b8bc2dd16d404db47c47f9}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DISTANCE\_AV\_DROITE\_45@{DISTANCE\_AV\_DROITE\_45}}
+\index{DISTANCE\_AV\_DROITE\_45@{DISTANCE\_AV\_DROITE\_45}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{DISTANCE\_AV\_DROITE\_45}{DISTANCE\_AV\_DROITE\_45}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_ac4a6b1a7e3b8bc2dd16d404db47c47f9} 
+\#define DISTANCE\+\_\+\+AV\+\_\+\+DROITE\+\_\+45~13}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a77a5289f4b28b45f81d7875048a319cb}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DISTANCE\_AV\_DROITE\_90@{DISTANCE\_AV\_DROITE\_90}}
+\index{DISTANCE\_AV\_DROITE\_90@{DISTANCE\_AV\_DROITE\_90}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{DISTANCE\_AV\_DROITE\_90}{DISTANCE\_AV\_DROITE\_90}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a77a5289f4b28b45f81d7875048a319cb} 
+\#define DISTANCE\+\_\+\+AV\+\_\+\+DROITE\+\_\+90~15}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a19fad875a7a232b1a9b401fc96d42464}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DISTANCE\_AV\_GAUCHE\_45@{DISTANCE\_AV\_GAUCHE\_45}}
+\index{DISTANCE\_AV\_GAUCHE\_45@{DISTANCE\_AV\_GAUCHE\_45}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{DISTANCE\_AV\_GAUCHE\_45}{DISTANCE\_AV\_GAUCHE\_45}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a19fad875a7a232b1a9b401fc96d42464} 
+\#define DISTANCE\+\_\+\+AV\+\_\+\+GAUCHE\+\_\+45~9}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a5a1e7788ca32b23ca6401dc68a8e136f}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DISTANCE\_AV\_GAUCHE\_90@{DISTANCE\_AV\_GAUCHE\_90}}
+\index{DISTANCE\_AV\_GAUCHE\_90@{DISTANCE\_AV\_GAUCHE\_90}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{DISTANCE\_AV\_GAUCHE\_90}{DISTANCE\_AV\_GAUCHE\_90}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a5a1e7788ca32b23ca6401dc68a8e136f} 
+\#define DISTANCE\+\_\+\+AV\+\_\+\+GAUCHE\+\_\+90~7}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a4986950e1be8216e67a81a68c915eeac}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DISTANCE\_AVANT@{DISTANCE\_AVANT}}
+\index{DISTANCE\_AVANT@{DISTANCE\_AVANT}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{DISTANCE\_AVANT}{DISTANCE\_AVANT}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a4986950e1be8216e67a81a68c915eeac} 
+\#define DISTANCE\+\_\+\+AVANT~11}
+
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_aecab9d4443da4dd6594c8aae9c74498e}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!NB\_SECTEURS@{NB\_SECTEURS}}
+\index{NB\_SECTEURS@{NB\_SECTEURS}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{NB\_SECTEURS}{NB\_SECTEURS}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_aecab9d4443da4dd6594c8aae9c74498e} 
+\#define NB\+\_\+\+SECTEURS~23}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!Can\_id@{Can\_id}}
+\index{Can\_id@{Can\_id}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{Can\_id}{Can\_id}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8} 
+enum \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8}{Can\+\_\+id}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PROPULSION@{PROPULSION}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!PROPULSION@{PROPULSION}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a6b273557b39b635aa90ae420976eae52}\label{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a6b273557b39b635aa90ae420976eae52} 
+PROPULSION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTION@{DIRECTION}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!DIRECTION@{DIRECTION}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a29e2c300ecd12ceecf4ab3fb87bbdafc}\label{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a29e2c300ecd12ceecf4ab3fb87bbdafc} 
+DIRECTION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AVANT@{AVANT}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!AVANT@{AVANT}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a9636f5bb497ae79ecf09091460c096ca}\label{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8a9636f5bb497ae79ecf09091460c096ca} 
+AVANT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARRIERE@{ARRIERE}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!ARRIERE@{ARRIERE}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8aa36ffbc408465c298fa641403c91972f}\label{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8aa36ffbc408465c298fa641403c91972f} 
+ARRIERE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AVANT\_EXT@{AVANT\_EXT}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!AVANT\_EXT@{AVANT\_EXT}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8ae992bd8c6ecf4cf68b0533ccca8ea7dc}\label{_co_v_a_c_i_e_l___c_a_n_8h_ab02c041f37e3a0cf33a78f58befe57c8ae992bd8c6ecf4cf68b0533ccca8ea7dc} 
+AVANT\+\_\+\+EXT&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225f}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!CommandeDirection@{CommandeDirection}}
+\index{CommandeDirection@{CommandeDirection}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{CommandeDirection}{CommandeDirection}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225f} 
+enum \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225f}{Commande\+Direction}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{gauche@{gauche}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!gauche@{gauche}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225fa27e0a744152fc87275d593f243e2e784}\label{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225fa27e0a744152fc87275d593f243e2e784} 
+gauche&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{droit@{droit}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!droit@{droit}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225fa2e6d369300c152a5a872aa08e63c1b79}\label{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225fa2e6d369300c152a5a872aa08e63c1b79} 
+droit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{devant@{devant}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!devant@{devant}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225faa6e55c3468aac058a150d27bcca4e5e4}\label{_co_v_a_c_i_e_l___c_a_n_8h_a44543b110c8d261c5aded352a19e225faa6e55c3468aac058a150d27bcca4e5e4} 
+devant&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5e}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!CommandePropulsion@{CommandePropulsion}}
+\index{CommandePropulsion@{CommandePropulsion}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}
+\doxysubsubsection{\texorpdfstring{CommandePropulsion}{CommandePropulsion}}
+{\footnotesize\ttfamily \label{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5e} 
+enum \mbox{\hyperlink{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5e}{Commande\+Propulsion}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{accelerer@{accelerer}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!accelerer@{accelerer}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5ea161e81552dd8fae1ece1653c046a9040}\label{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5ea161e81552dd8fae1ece1653c046a9040} 
+accelerer&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ralentir@{ralentir}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!ralentir@{ralentir}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5eaa1c711f87ad452428e40c86727462bb2}\label{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5eaa1c711f87ad452428e40c86727462bb2} 
+ralentir&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stop@{stop}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!stop@{stop}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5ead82a4ca4dc1f04bf9453ad19f9341028}\label{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5ead82a4ca4dc1f04bf9453ad19f9341028} 
+stop&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{reculer@{reculer}!CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}}\index{CoVACIEL\_CAN.h@{CoVACIEL\_CAN.h}!reculer@{reculer}}}\Hypertarget{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5eac397e60f2e7bc2c2d7bf619cbbc45ba2}\label{_co_v_a_c_i_e_l___c_a_n_8h_a75f7d898393743f603bbae989c3edb5eac397e60f2e7bc2c2d7bf619cbbc45ba2} 
+reculer&\\
+\hline
+
+\end{DoxyEnumFields}
