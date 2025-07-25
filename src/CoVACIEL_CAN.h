@@ -1,14 +1,13 @@
-// CoVACIEL_CAN.h
+ï»¿// CoVACIEL_CAN.h
 #pragma once
-
+#define LOG_COVACIEL //Serial.printf
 #if defined(ARDUINO) && ARDUINO >= 100
-#include "arduino.h"
+#include "Arduino.h"
 #else
 #include "WProgram.h"
 #endif
+#include "driver/twai.h"
 #include <ArduinoJson.h>
-#include <ESP32-TWAI-CAN.hpp>
-//#define LOG_COVACIEL Serial.printf
 
 #define CAN_ID_PROPULSION 0x660
 #define CAN_ID_VITESSE 0x662
@@ -47,11 +46,11 @@ enum Can_id {
 	AVANT_EXT
 };
 
-class CoVACIEL_CAN : public TwaiCAN
+class CoVACIEL_CAN // : public TwaiCAN SUPPRIMÃ‰
 {
 protected:
-
-	CanFrame CANMessages[5];
+	// Remplacement de CanFrame par twai_message_t
+	twai_message_t CANMessages[5];
 
 public:
 	/// <summary>
@@ -62,9 +61,11 @@ public:
 	/// <returns>true si OK</returns>
 	bool initialize(uint8_t rx, uint8_t tx);
 
+	
+
 	/// <summary>
-/// mise a jour des variables apres lecture du bus can
-/// </summary>
+	/// mise a jour des variables apres lecture du bus can
+	/// </summary>
 	void updateRx();
 	/// <summary>
 	/// envoie les trames sur le bus CAN
@@ -118,7 +119,7 @@ public:
 	/// <summary>
 	/// retourne l'angle de direction
 	/// </summary>
-	/// <returns>angle en degré</returns>
+	/// <returns>angle en degre</returns>
 	int getAngleDirection();
 
 	/// <summary>
@@ -144,101 +145,23 @@ public:
 	/// <returns>distance en mm</returns>
 	int getDistance(byte secteur); // secteur est compris entre 0 et 22
 
-
 	/*********************************************************************/
 	/*                SETTERS                                            */
 	/*********************************************************************/
 
-	/// <summary>
-	/// positionne la directioon
-	/// </summary>
-	/// <param name="commande">gauche :0, droite: 1, devant: 2</param>
-	/// <returns>true si OK</returns>
 	bool setDirection(byte commande);
-
-
-
-
-
-	/// <summary>
-/// positionne la propulsion en fonction de la commande :
-/// - accelerer (0)
-/// - ralentir (1)
-/// - stop (2)
-/// - reculer(3)
-/// </summary>
-/// <param name="commande">accelerer,ralentir,stop,reculer</param>
-/// <returns>true si OK</returns>
-	bool setPropulsion(byte commande);
-
-	
-	/// <summary>
-	/// definit  la distance avant
-	/// </summary>
-	/// <param name="mm">distance en mm</param>
-	/// <param name="send2canbus">booleen indiquant si la trame doit etre envoyee immediatement</param>
-	/// <returns>true si OK</returns>
+	bool setPropulsion(byte commande);	
 	bool setDistAv(uint16_t mm, bool send2canbus = false);
-
-	/// <summary>
-	/// definit  la distance avant droite a 45°
-	/// </summary>
-	/// <param name="mm">distance en mm</param>
-	/// <param name="send2canbus">booleen indiquant si la trame doit etre envoyee immediatement</param>
-	/// <returns>true si OK</returns>
 	bool setDistAvDroite45(uint16_t mm, bool send2canbus = false);
-
-
-	/// <summary>
-	/// definit  la distance avant gauche a 45°
-	/// </summary>
-	/// <param name="mm">distance en mm</param>
-	/// <param name="send2canbus">booleen indiquant si la trame doit etre envoyee immediatement</param>
-	/// <returns>true si OK</returns>
 	bool setDistAvGauche45(uint16_t mm, bool send2canbus = false);
-
-	/// <summary>
-	/// definit  la distance arriere
-	/// </summary>
-	/// <param name="mm">distance en mm</param>
-	/// <param name="send2canbus">booleen indiquant si la trame doit etre envoyee immediatement</param>
-	/// <returns>true si OK</returns>
 	bool setDistAr(uint16_t mm, bool send2canbus = false);
-
-
 	bool setDistAvDroite90(uint16_t mm, bool send2canbus = false);
 	bool setDistAvGauche90(uint16_t mm, bool send2canbus = false);
 	bool setDistArDroite(uint16_t mm, bool send2canbus = false);
 	bool setDistArGauche(uint16_t mm, bool send2canbus = false);
-	/// <summary>
-	/// positionne la direction 
-	/// </summary>
-	/// <param name="angle">angle</param>
-	/// <returns>true si OK</returns>
 	bool setAngleDirection(int angle);
-	/// <summary>
-	/// definit les distances a partir d'un tableau de valeurs
-	/// </summary>
-	/// <param name="distance">nom du tableau (normalement il doit contenir 23 valeurs)</param>
-	/// <param name="length">longueur du tableau</param>
-	/// <returns></returns>
 	bool setDistance(int* distance, byte length);
-	/// <summary>
-	/// definit les distances à partir d'un objet json
-	/// l'objet est un tableau contenant les diferrentes distances sur 23 secteurs
-	/// les index des differents secteurs sont definis avec les constantes DISTANCE_AVANT,...,DISTANCE_AR_DROITE
-	/// au debut du fichier CoVACIEL_CAN.h
-	///	/// </summary>
-	/// <param name="jsonDistance"> {"distances":[sect0,sect1,...,sect21,sect22]}</param>
-	/// <returns></returns>
 	bool setDistanceJson(String jsonDistance);
-
-
-	/// <summary>
-	/// regle la propulsion avec la valeur de vitesse
-	/// </summary>
-	/// <param name="vitesse">negatif = marche arriere, positif marche avant</param>
-	/// <returns></returns>
 	bool setVitesse(int vitesse);
 
 	int distance[NB_SECTEURS] = { 0 };
@@ -246,9 +169,12 @@ public:
 	String parseCanFrame2json();
 	String parseDistancesJson();
 
-
-
 private:
+	bool init = false;
+	int8_t tx = 5;
+	int8_t rx = 4;
+	uint16_t txQueueSize = 5;
+	uint16_t rxQueueSize = 5;
 	int _lastMessage = 0;
 
 	int _newMessage4Json = 0;
@@ -266,8 +192,7 @@ private:
 	String _parsedDataJson = "";
 	int16_t _vitesse;
 	int16_t _angle;
-
+	void startAlertTask();
 	bool sendToCANBus(int can_id);
 	void parseData();
 };
-

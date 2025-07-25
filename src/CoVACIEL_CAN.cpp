@@ -1,65 +1,51 @@
 
-#include "CoVACIEL.h"
-
+#include "CoVACIEL_CAN.h"
 
 void CoVACIEL_CAN::updateRx() {
-
 	parseData();
-	//LOG_COVACIEL("_lastMessage:%d\n", _lastMessage);
-	if (_lastMessage != 0)
-	{
+	if (_lastMessage != 0) {
 		if (_lastMessage & 1) {
-			for (size_t i = 0; i < 4; i++)
-			{
-				if (CANMessages[PROPULSION].data[i] == 0xFF)
-				{
+			for (size_t i = 0; i < 4; i++) {
+				if (CANMessages[PROPULSION].data[i] == 0xFF) {
 					_propulsion = i;
 					break;
 				}
 			}
-			_vitesse = (CANMessages[PROPULSION].data[4] <<8 )| CANMessages[PROPULSION].data[5] ;
-			LOG_COVACIEL("_vitesse:%d\n",_vitesse);
+			_vitesse = (CANMessages[PROPULSION].data[4] << 8) | CANMessages[PROPULSION].data[5];
+			LOG_COVACIEL("_vitesse:%d\n", _vitesse);
 		}
-		if (_lastMessage & 2)
-		{
-			for (size_t i = 0; i < 6; i++)
-			{
-				if (CANMessages[DIRECTION].data[i] == 0xFF)
-				{
+		if (_lastMessage & 2) {
+			for (size_t i = 0; i < 6; i++) {
+				if (CANMessages[DIRECTION].data[i] == 0xFF) {
 					_direction = i;
 					break;
 				}
 			}
-			_angle = int16_t((CANMessages[DIRECTION].data[4] <<8) | CANMessages[DIRECTION].data[5]) ;
+			_angle = int16_t((CANMessages[DIRECTION].data[4] << 8) | CANMessages[DIRECTION].data[5]);
 			LOG_COVACIEL("direction\n");
 		}
-		if (_lastMessage & 4)
-		{
-
-			_distAvant = (CANMessages[AVANT].data[2] <<8)| CANMessages[AVANT].data[3];
-			_distAvDroite45 = (CANMessages[AVANT].data[4] <<8)| CANMessages[AVANT].data[5];
-			_distAvGauche45 = (CANMessages[AVANT].data[0] <<8)| CANMessages[AVANT].data[1];
+		if (_lastMessage & 4) {
+			_distAvant = (CANMessages[AVANT].data[2] << 8) | CANMessages[AVANT].data[3];
+			_distAvDroite45 = (CANMessages[AVANT].data[4] << 8) | CANMessages[AVANT].data[5];
+			_distAvGauche45 = (CANMessages[AVANT].data[0] << 8) | CANMessages[AVANT].data[1];
 			distance[DISTANCE_AVANT] = _distAvant;
 			distance[DISTANCE_AV_DROITE_45] = _distAvDroite45;
 			distance[DISTANCE_AV_GAUCHE_45] = _distAvGauche45;
 			LOG_COVACIEL("dist av\n");
 		}
-		if (_lastMessage & 8)
-		{
-			_distAr = (CANMessages[ARRIERE].data[2] <<8)| CANMessages[ARRIERE].data[3];
-			_distArDroite = (CANMessages[ARRIERE].data[4] <<8)| CANMessages[ARRIERE].data[5];
-			_distArGauche = (CANMessages[ARRIERE].data[0] <<8)| CANMessages[ARRIERE].data[1];
-
+		if (_lastMessage & 8) {
+			_distAr = (CANMessages[ARRIERE].data[2] << 8) | CANMessages[ARRIERE].data[3];
+			_distArDroite = (CANMessages[ARRIERE].data[4] << 8) | CANMessages[ARRIERE].data[5];
+			_distArGauche = (CANMessages[ARRIERE].data[0] << 8) | CANMessages[ARRIERE].data[1];
 			distance[DISTANCE_AR] = _distAr;
 			distance[DISTANCE_AR_DROITE] = _distArDroite;
 			distance[DISTANCE_AR_GAUCHE] = _distArGauche;
 			LOG_COVACIEL("dist ar\n");
 		}
-		if (_lastMessage & 0x10)
-		{
-			_distAvant= (CANMessages[AVANT_EXT].data[2] << 8) | CANMessages[AVANT_EXT].data[3];
-			_distAvDroite90 = (CANMessages[AVANT_EXT].data[4] <<8)| CANMessages[AVANT_EXT].data[5];
-			_distAvGauche90 = (CANMessages[AVANT_EXT].data[0] <<8) | CANMessages[AVANT_EXT].data[1];
+		if (_lastMessage & 0x10) {
+			_distAvant = (CANMessages[AVANT_EXT].data[2] << 8) | CANMessages[AVANT_EXT].data[3];
+			_distAvDroite90 = (CANMessages[AVANT_EXT].data[4] << 8) | CANMessages[AVANT_EXT].data[5];
+			_distAvGauche90 = (CANMessages[AVANT_EXT].data[0] << 8) | CANMessages[AVANT_EXT].data[1];
 			distance[DISTANCE_AVANT] = _distAvant;
 			distance[DISTANCE_AV_DROITE_90] = _distAvDroite90;
 			distance[DISTANCE_AV_GAUCHE_90] = _distAvGauche90;
@@ -67,42 +53,32 @@ void CoVACIEL_CAN::updateRx() {
 		}
 		_lastMessage = 0;
 		_newMessage4Json = 1;
-
-
-		
 	}
-
 }
 
-void CoVACIEL_CAN::parseData()
-{
-	//LOG_COVACIEL("file:%d\n", inRxQueue());;
-	if (inRxQueue() > 0)
-	{
+void CoVACIEL_CAN::parseData() {
+	twai_message_t msg;
+	if (twai_receive(&msg, pdMS_TO_TICKS(100)) == ESP_OK) {
 		_lastMessage = 0;
-		LOG_COVACIEL("rx_queue:%d\n", inRxQueue());
-		CanFrame msg;
-		readFrame(msg, 100);
-		switch (msg.identifier)
-		{
+		switch (msg.identifier) {
 		case CAN_ID_PROPULSION:
-			_lastMessage = _lastMessage | 1;
+			_lastMessage |= 1;
 			CANMessages[PROPULSION] = msg;
 			break;
 		case CAN_ID_DIRECTION:
-			_lastMessage = _lastMessage | 2;
+			_lastMessage |= 2;
 			CANMessages[DIRECTION] = msg;
 			break;
 		case CAN_ID_AVANT:
-			_lastMessage = _lastMessage | 4;
+			_lastMessage |= 4;
 			CANMessages[AVANT] = msg;
 			break;
 		case CAN_ID_ARRIERE:
-			_lastMessage = _lastMessage | 8;
+			_lastMessage |= 8;
 			CANMessages[ARRIERE] = msg;
 			break;
 		case CAN_ID_AVANT_EXT:
-			_lastMessage = _lastMessage | 0x10;
+			_lastMessage |= 0x10;
 			CANMessages[AVANT_EXT] = msg;
 			break;
 		default:
@@ -110,16 +86,15 @@ void CoVACIEL_CAN::parseData()
 			break;
 		}
 		LOG_COVACIEL("_lastMessage:%d\n", _lastMessage);
-	
 	}
 }
 
-bool CoVACIEL_CAN::sendToCANBus(int can_id)
-{
-	bool test = false;
-	CanFrame frame = { 0 };
-	switch (can_id)
-	{
+bool CoVACIEL_CAN::sendToCANBus(int can_id) {
+	twai_message_t frame = {};
+	frame.identifier = can_id;
+	frame.extd = 0;
+	frame.data_length_code = 6;
+	switch (can_id) {
 	case CAN_ID_AVANT:
 		frame.data[0] = _distAvGauche45 >> 8 & 0xFF;
 		frame.data[1] = _distAvGauche45 & 0xFF;
@@ -127,7 +102,6 @@ bool CoVACIEL_CAN::sendToCANBus(int can_id)
 		frame.data[3] = _distAvant & 0xff;
 		frame.data[4] = _distAvDroite45 >> 8 & 0xff;
 		frame.data[5] = _distAvDroite45 & 0xff;
-
 		break;
 	case CAN_ID_AVANT_EXT:
 		frame.data[0] = _distAvGauche90 >> 8 & 0xff;
@@ -151,9 +125,7 @@ bool CoVACIEL_CAN::sendToCANBus(int can_id)
 		frame.data[5] = _angle & 0xff;
 		break;
 	case CAN_ID_PROPULSION:
-		
-		if (_propulsion < 4)
-		{
+		if (_propulsion < 4) {
 			frame.data[_propulsion] = 0xFF;
 		}
 		else if (_propulsion == 255) {
@@ -165,29 +137,46 @@ bool CoVACIEL_CAN::sendToCANBus(int can_id)
 	default:
 		break;
 	}
-	frame.identifier = can_id;
-	frame.extd = 0;
-	frame.data_length_code = 6;
-	return writeFrame(frame, 10);
+	return twai_transmit(&frame, pdMS_TO_TICKS(10)) == ESP_OK;
 }
 
-
-bool CoVACIEL_CAN::initialize(uint8_t rx, uint8_t tx)
-{
-	setPins(tx, rx);
-	setRxQueueSize(5);
-	setTxQueueSize(5);
-	setSpeed(convertSpeed(250));
-	return begin();
+bool CoVACIEL_CAN::initialize(uint8_t rx, uint8_t tx) {
+	twai_general_config_t g_config = TWAI_GENERAL_CONFIG_DEFAULT((gpio_num_t)tx, (gpio_num_t)rx, TWAI_MODE_NORMAL);
+	twai_timing_config_t t_config = TWAI_TIMING_CONFIG_250KBITS();
+	twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL();
+	if (twai_driver_install(&g_config, &t_config, &f_config) != ESP_OK) return false;
+	if (twai_start() != ESP_OK) return false;
+	startAlertTask();
+	return true;
 }
 
+void CoVACIEL_CAN::startAlertTask() {
+	xTaskCreate(
+		[](void* arg) {
+			CoVACIEL_CAN* self = static_cast<CoVACIEL_CAN*>(arg);
+			uint32_t alerts_triggered;
+			while (true) {
+				if (twai_read_alerts(&alerts_triggered, pdMS_TO_TICKS(100)) == ESP_OK) {
+					if (alerts_triggered & TWAI_ALERT_RX_DATA) {
+						self->updateRx(); // Mise à jour automatique
+					}
+				}
+				vTaskDelay(pdMS_TO_TICKS(10));
+			}
+		},
+		"TWAIAlertTask",
+		2048,
+		this,
+		1,
+		nullptr
+	);
+}
 bool CoVACIEL_CAN::setPropulsion(byte commande)
 {
 	_propulsion = commande;
 	return sendToCANBus(CAN_ID_PROPULSION);
 
 }
-
 bool CoVACIEL_CAN::setVitesse(int vitesse)
 {
 	_propulsion = 255;
