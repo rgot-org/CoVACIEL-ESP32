@@ -2,10 +2,10 @@
 
 #include "Arduino.h"
 #include <functional> // Pour std::function et std::bind
-//#define lidarDebugSerial lidarConcole
+//#define lidarDebugSerial lidarConsole
 #ifndef lidarConsole
-#define lidarConcole Serial
-//#define lidarConcole telnet
+#define lidarConsole Serial
+//#define lidarConsole telnet
 #endif // !lidarConsole
 
 
@@ -283,8 +283,8 @@ public:
 	lidarExpressDataDense _incompleteExpressDensePacket; // uses 84 bytes to store 40 measurements
 
 	RPlidar(HardwareSerial& lidarSerial ) : lidarSerial(lidarSerial)  {}
-	// Méthode pour définir le callback
- // Méthode pour définir le callback
+	// Mï¿½thode pour dï¿½finir le callback
+ // Mï¿½thode pour dï¿½finir le callback
 	void setPostParseCallback(const std::function<void(uint16_t, uint16_t, uint8_t, int8_t)>& callback) {
 		postParseCallback = callback;
 	}
@@ -460,22 +460,22 @@ public:
 
 	void printLidarInfo() {
 		lidarGetInfoResponse info = getInfo();
-		lidarConcole.print("model: "); lidarConcole.println(info.model());
-		lidarConcole.print("firmware: "); lidarConcole.print(info.firmwareMajor()); lidarConcole.print('.'); lidarConcole.println(info.firmwareMinor());
-		lidarConcole.print("hardware: "); lidarConcole.println(info.hardware());
-		lidarConcole.print("serialNumber (HEX): "); for (uint8_t i = 0; i < 16; i++) { lidarConcole.print(info.serialNumber(i), HEX); lidarConcole.print(' '); } lidarConcole.println();
-		lidarConcole.print("serialNumber (32bit): "); for (uint8_t i = 0; i < 4; i++) { lidarConcole.print((uint32_t&)info.serialNumber(i * 4)); lidarConcole.print(' '); } lidarConcole.println();
-		lidarConcole.print("serialNumber (64bit): "); for (uint8_t i = 0; i < 2; i++) { lidarConcole.print((uint64_t&)info.serialNumber(i * 8)); lidarConcole.print(' '); } lidarConcole.println();
+		lidarConsole.print("model: "); lidarConsole.println(info.model());
+		lidarConsole.print("firmware: "); lidarConsole.print(info.firmwareMajor()); lidarConsole.print('.'); lidarConsole.println(info.firmwareMinor());
+		lidarConsole.print("hardware: "); lidarConsole.println(info.hardware());
+		lidarConsole.print("serialNumber (HEX): "); for (uint8_t i = 0; i < 16; i++) { lidarConsole.print(info.serialNumber(i), HEX); lidarConsole.print(' '); } lidarConsole.println();
+		lidarConsole.print("serialNumber (32bit): "); for (uint8_t i = 0; i < 4; i++) { lidarConsole.print((uint32_t&)info.serialNumber(i * 4)); lidarConsole.print(' '); } lidarConsole.println();
+		lidarConsole.print("serialNumber (64bit): "); for (uint8_t i = 0; i < 2; i++) { lidarConsole.print((uint64_t&)info.serialNumber(i * 8)); lidarConsole.print(' '); } lidarConsole.println();
 	}
 	void printLidarHealth() {
 		lidarGetHealthResponse health = getHealth();
-		lidarConcole.print("status: "); lidarConcole.println(health.status());
-		lidarConcole.print("errorCode (HEX): "); lidarConcole.println(health.errorCode(), HEX);
+		lidarConsole.print("status: "); lidarConsole.println(health.status());
+		lidarConsole.print("errorCode (HEX): "); lidarConsole.println(health.errorCode(), HEX);
 	}
 	void printLidarSamplerate() {
 		lidarGetSamplerateResponse samplerate = getSamplerate();
-		lidarConcole.print("standard: "); lidarConcole.println(samplerate.standard());
-		lidarConcole.print("express: "); lidarConcole.println(samplerate.express());
+		lidarConsole.print("standard: "); lidarConsole.println(samplerate.standard());
+		lidarConsole.print("express: "); lidarConsole.println(samplerate.express());
 	}
 
 	inline uint16_t getLidarConfScanModeCount() { return(_getLidarConfAttributeNoPayload<uint16_t, GET_CONF_SCAN_MODE_COUNT>()); }
@@ -512,17 +512,17 @@ public:
 
 	void printLidarConfig() {
 		uint16_t scanModeCount = getLidarConfScanModeCount();
-		//if((scanModeCount == 0) || (scanModeCount > 10)) {lidarConcole.print("");lidarConcole.println();return;}
-		lidarConcole.print("scan mode count: "); lidarConcole.println(scanModeCount);
+		//if((scanModeCount == 0) || (scanModeCount > 10)) {lidarConsole.print("");lidarConsole.println();return;}
+		lidarConsole.print("scan mode count: "); lidarConsole.println(scanModeCount);
 		for (uint16_t i = 0; i < scanModeCount; i++) {
-			lidarConcole.print("scan mode: "); lidarConcole.println(i);
-			String modeName = getLidarConfScanModeName(i); lidarConcole.print('\t'); lidarConcole.print("name: "); lidarConcole.println(modeName); // inefficient as heck, but it should work
-			uint32_t sampletime = getLidarConfScanModeSampletime(i);  lidarConcole.print('\t'); lidarConcole.print("sampletime: "); lidarConcole.print(sampletime); lidarConcole.print(" = "); lidarConcole.print((float)sampletime / 256.0); lidarConcole.println(" microseconds");
-			uint32_t maxDist = getLidarConfScanModeMaxDist(i);  lidarConcole.print('\t'); lidarConcole.print("maxDist: "); lidarConcole.print(maxDist); lidarConcole.print(" = "); lidarConcole.print((float)maxDist / 256.0); lidarConcole.println(" meters");
-			uint32_t ansType = getLidarConfScanModeAnsType(i);  lidarConcole.print('\t'); lidarConcole.print("ansType (HEX): "); lidarConcole.println(ansType, HEX); // todo: print string for CONF_SCAN_MODE_ANS_TYPE_STANDARD or one of those
+			lidarConsole.print("scan mode: "); lidarConsole.println(i);
+			String modeName = getLidarConfScanModeName(i); lidarConsole.print('\t'); lidarConsole.print("name: "); lidarConsole.println(modeName); // inefficient as heck, but it should work
+			uint32_t sampletime = getLidarConfScanModeSampletime(i);  lidarConsole.print('\t'); lidarConsole.print("sampletime: "); lidarConsole.print(sampletime); lidarConsole.print(" = "); lidarConsole.print((float)sampletime / 256.0); lidarConsole.println(" microseconds");
+			uint32_t maxDist = getLidarConfScanModeMaxDist(i);  lidarConsole.print('\t'); lidarConsole.print("maxDist: "); lidarConsole.print(maxDist); lidarConsole.print(" = "); lidarConsole.print((float)maxDist / 256.0); lidarConsole.println(" meters");
+			uint32_t ansType = getLidarConfScanModeAnsType(i);  lidarConsole.print('\t'); lidarConsole.print("ansType (HEX): "); lidarConsole.println(ansType, HEX); // todo: print string for CONF_SCAN_MODE_ANS_TYPE_STANDARD or one of those
 		}
 		uint16_t scanModeTypical = getLidarConfScanModeTypical();
-		lidarConcole.print("scan mode typical: "); lidarConcole.println(scanModeTypical);
+		lidarConsole.print("scan mode typical: "); lidarConsole.println(scanModeTypical);
 	}
 
 	bool startStandardScan(bool force = false) {
