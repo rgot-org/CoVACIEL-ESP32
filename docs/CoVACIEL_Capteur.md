@@ -84,7 +84,7 @@ if (radar.getVersion() == 0) {
 
 ---
 
-### Exemple — Carte arrière avec 3 capteurs
+### Exemple
 
 ```cpp
 #include <CoVACIEL.h>
@@ -92,30 +92,17 @@ if (radar.getVersion() == 0) {
 #define SDA_PIN 8
 #define SCL_PIN 9
 
-CoVACIEL_CAN    canbus;
-CoVACIEL_radarUS radarCentre;
-CoVACIEL_radarUS radarDroite;
-CoVACIEL_radarUS radarGauche;
+CoVACIEL_radarUS radar;
 
 void setup() {
-    radarCentre.init(SDA_PIN, SCL_PIN, UNITE_CM, 0x70);
-    radarDroite.init(SDA_PIN, SCL_PIN, UNITE_CM, 0x71);
-    radarGauche.init(SDA_PIN, SCL_PIN, UNITE_CM, 0x72);
-    radarCentre.start();
-    radarDroite.start();
-    radarGauche.start();
-
-    canbus.init(13, 12);
+    radar.init(SDA_PIN, SCL_PIN, UNITE_CM, 0x70);
+    radar.start();
 }
 
 void loop() {
-    // Mise à jour locale des distances (cm → mm)
-    canbus.setDistAr      (radarCentre.getDistance() * 10);
-    canbus.setDistArDroite(radarDroite.getDistance() * 10);
-    canbus.setDistArGauche(radarGauche.getDistance() * 10);
-
-    // Écoute du bus : répond automatiquement à CAN_ID_ARRIERE_REQUEST
-    canbus.updateRx();
+    int distance_mm = radar.getDistance() * 10; // cm → mm
+    Serial.printf("Distance : %d mm\n", distance_mm);
+    delay(200);
 }
 ```
 
@@ -147,13 +134,13 @@ Configure le port série et la broche de contrôle moteur du LiDAR.
 
 | Paramètre | Description |
 |---|---|
-| `baudrate` | Vitesse UART (115200 pour la plupart des modèles RPLidar) |
+| `baudrate` | Vitesse UART Lidar (460800 pour RPLidar C1) |
 | `RXpin` | Broche GPIO RX |
 | `TXpin` | Broche GPIO TX |
 | `motorPin` | Broche GPIO de contrôle moteur (`-1` si non utilisée) |
 
 ```cpp
-lidar.init(115200, 16, 17, 5);
+lidar.init(460800, 16, 17, 5);
 ```
 
 ---
@@ -174,14 +161,44 @@ Force une mise à jour du tableau `distance[]`. À appeler si vous n'utilisez pa
 
 ---
 
+### Montage — orientation du câble
+
+> **Important :** le câble de données du LiDAR doit être orienté vers **l'arrière** du véhicule.
+>
+> Conséquence : l'**avant** du véhicule correspond au secteur **180°** du LiDAR.
+>
+> ```
+>          AVANT véhicule
+>               ↑
+>              180°
+>    90° ←  [LiDAR]  → 270°
+>               0°
+>               ↓
+>          ARRIÈRE véhicule
+>          (câble ici)
+> ```
+
+---
+
 ### Lecture
 
 #### `int distance[25]`
 
-Tableau public contenant les distances en mm, indexé par secteur angulaire (0 à 24). Le découpage angulaire exact dépend du modèle RPLidar utilisé.
+Tableau public contenant les distances en mm, indexé par secteur angulaire (0 à 24, pas ≈ 14°).
+
+Compte tenu de l'orientation câble-arrière, la correspondance est :
+
+| Secteur | Angle LiDAR | Direction véhicule |
+|---|---|---|
+| 0 | 0° | Arrière |
+| 6 | ~86° | Gauche |
+| 12 | ~172° | **Avant** |
+| 19 | ~274° | Droite |
 
 ```cpp
-int d_avant = lidar.distance[12]; // exemple : secteur face avant
+int d_avant = lidar.distance[12]; // avant du véhicule = 180° LiDAR
+int d_gauche = lidar.distance[6]; // gauche véhicule
+int d_droite = lidar.distance[19]; // droite véhicule
 ```
 
 ---
@@ -191,18 +208,26 @@ int d_avant = lidar.distance[12]; // exemple : secteur face avant
 ```cpp
 #include <CoVACIEL.h>
 
+#define LIDAR_BAUDRATE  460800 // RPLIDAR C1
+#define LIDAR_RX        16 //fil vert = TX pour ESP32
+#define LIDAR_TX        17 //fil jaune = RX pour ESP32
+#define LIDAR_MOTOR      5   // -1 si non utilisé
+
+#define CAN_RX          13
+#define CAN_TX          12
+
 CoVACIEL_lidar  lidar(Serial1);
 CoVACIEL_CAN    canbus;
 
 void setup() {
-    lidar.init(115200, 16, 17, 5);
+    lidar.init(LIDAR_BAUDRATE, LIDAR_RX, LIDAR_TX, LIDAR_MOTOR);
     lidar.start();
-    canbus.init(13, 12);
+    canbus.init(CAN_RX, CAN_TX);
 }
 
 void loop() {
     // Envoyer les distances du lidar sur le bus CAN
-    canbus.setDistAv      (lidar.distance[12], true);
+    canbus.setDistAv        (lidar.distance[12], true);
     canbus.setDistAvGauche45(lidar.distance[9],  true);
     canbus.setDistAvDroite45(lidar.distance[15], true);
 
