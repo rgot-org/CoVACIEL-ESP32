@@ -1,0 +1,89 @@
+#######################################
+# Classes (KEYWORD1)
+#######################################
+
+CoVACIEL_CAN	KEYWORD1
+CoVACIEL_direction	KEYWORD1
+CoVACIEL_propulsion	KEYWORD1
+CoVACIEL_radarUS	KEYWORD1
+CoVACIEL_lidar	KEYWORD1
+
+#######################################
+# Methodes (KEYWORD2)
+#######################################
+
+init	KEYWORD2
+updateRx	KEYWORD2
+updateTx	KEYWORD2
+getDistanceAvant	KEYWORD2
+getDistanceArriere	KEYWORD2
+getDistanceArGauche	KEYWORD2
+getDistanceArDroite	KEYWORD2
+getDistAvGauche45	KEYWORD2
+getDistAvDroite45	KEYWORD2
+getDistAvGauche90	KEYWORD2
+getDistAvDroite90	KEYWORD2
+getDistance	KEYWORD2
+setDistAv	KEYWORD2
+setDistAr	KEYWORD2
+setDistAvGauche45	KEYWORD2
+setDistAvDroite45	KEYWORD2
+setDistAvGauche90	KEYWORD2
+setDistAvDroite90	KEYWORD2
+setDistArGauche	KEYWORD2
+setDistArDroite	KEYWORD2
+setDistance	KEYWORD2
+setDistanceJson	KEYWORD2
+setPropulsion	KEYWORD2
+getPropulsion	KEYWORD2
+getPropulsionStr	KEYWORD2
+setVitesse	KEYWORD2
+getVitesse	KEYWORD2
+setDirection	KEYWORD2
+getDirection	KEYWORD2
+getDirectionStr	KEYWORD2
+setAngleDirection	KEYWORD2
+getAngleDirection	KEYWORD2
+setDirectionDegre	KEYWORD2
+setButeeDroite	KEYWORD2
+setButeeGauche	KEYWORD2
+getButeeDroite	KEYWORD2
+getButeeGauche	KEYWORD2
+reglageButees	KEYWORD2
+clearParams	KEYWORD2
+setPWMAvMax	KEYWORD2
+setPWMAvMin	KEYWORD2
+setPWMArMax	KEYWORD2
+getPWMAvMax	KEYWORD2
+getPWMAvMin	KEYWORD2
+getPWMArMax	KEYWORD2
+getVersion	KEYWORD2
+start	KEYWORD2
+stop	KEYWORD2
+refresh	KEYWORD2
+canBus2SerialJson	KEYWORD2
+parseDistancesJson	KEYWORD2
+parseCanFrame2json	KEYWORD2
+
+#######################################
+# Constantes (LITERAL1)
+#######################################
+
+CAN_ID_PROPULSION	LITERAL1
+CAN_ID_VITESSE	LITERAL1
+CAN_ID_DIRECTION	LITERAL1
+CAN_ID_AVANT	LITERAL1
+CAN_ID_ARRIERE	LITERAL1
+CAN_ID_AVANT_EXT	LITERAL1
+CAN_ID_ARRIERE_REQUEST	LITERAL1
+DISTANCE_AVANT	LITERAL1
+DISTANCE_AV_GAUCHE_45	LITERAL1
+DISTANCE_AV_GAUCHE_90	LITERAL1
+DISTANCE_AV_DROITE_45	LITERAL1
+DISTANCE_AV_DROITE_90	LITERAL1
+DISTANCE_AR	LITERAL1
+DISTANCE_AR_GAUCHE	LITERAL1
+DISTANCE_AR_DROITE	LITERAL1
+NB_SECTEURS	LITERAL1
+UNITE_CM	LITERAL1
+UNITE_INCH	LITERAL1
