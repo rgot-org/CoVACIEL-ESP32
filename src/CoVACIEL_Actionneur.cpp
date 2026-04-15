@@ -10,10 +10,10 @@ void CoVACIEL_propulsion::init(int pin)
 	_buteeAvMax = CoVACIEL_prefs.getInt("bAvMax",  100);
 	_buteeAvMin = CoVACIEL_prefs.getInt("bAvMin", rapportCycliqueArret);
 	CoVACIEL_prefs.end();
-	rgbLedWrite(LED_PIN, 0, 20, 0);
+	//rgbLedWrite(LED_PIN, 0, 20, 0);
 	setPropulsion(0);
 	delay(3000);
-	rgbLedWrite(LED_PIN, 0, 0, 0);
+	//rgbLedWrite(LED_PIN, 0, 0, 0);
 	
 
 }

@@ -204,6 +204,9 @@ int CoVACIEL_radarUS::mesure()
 		//Serial.println(TAILLE_PILE - uxTaskGetStackHighWaterMark(taskHandle));
 		return _distance;
 	}
+	else {
+		return -1; // error
+	}	
 }
 
 void CoVACIEL_radarUS::taskFunction(void* parameter)
