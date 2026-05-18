@@ -187,6 +187,46 @@ Charge les distances depuis un objet JSON de la forme :
 
 ---
 
+## Contrôle du lidar
+
+### `bool setLidarStart(bool start)`
+
+Envoie une commande de démarrage ou d'arrêt du lidar sur le bus CAN (`CAN_ID_LIDAR_CTRL 0x670`). La trame contient 1 octet : `0x01` pour démarrer, `0x00` pour arrêter.
+
+**Retourne** `true` si la trame a été émise avec succès.
+
+### `bool getLidarStart()`
+
+Retourne l'état de démarrage du lidar tel que reçu depuis le bus CAN. La valeur est mise à jour par `updateRx()` à chaque réception d'une trame `CAN_ID_LIDAR_CTRL`.
+
+**Retourne** `true` si le lidar doit être démarré, `false` sinon.
+
+#### Exemple — carte calculateur (émetteur)
+
+```cpp
+// Démarrer le lidar
+canbus.setLidarStart(true);
+
+// Arrêter le lidar
+canbus.setLidarStart(false);
+```
+
+#### Exemple — carte lidar (récepteur)
+
+```cpp
+void loop() {
+    canbus.updateRx();                   // met à jour _lidarStart si trame reçue
+
+    if (canbus.getLidarStart()) {
+        lidar.start();
+    } else {
+        lidar.stop();
+    }
+}
+```
+
+---
+
 ## Sérialisation JSON
 
 | Méthode | Description |

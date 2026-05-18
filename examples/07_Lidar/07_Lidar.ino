@@ -7,6 +7,19 @@
   Les distances sont disponibles dans le tableau distance[25],
   indexé par secteur angulaire (0 = 0°, 24 = ~337°, pas ≈ 14°).
 
+  ORIENTATION :
+    Le câble de données du LiDAR doit être positionné vers l'ARRIÈRE
+    du véhicule. L'avant du véhicule correspond donc au secteur 180°
+    du LiDAR, soit l'index 12 du tableau distance[].
+
+        AVANT véhicule
+              ↑
+             180° (index 12)
+   90° ←  [LiDAR]  → 270°
+              0°  (index 0)
+              ↓
+        ARRIÈRE véhicule (câble ici)
+
   Brochage :
     LiDAR RX    -> GPIO 17
     LiDAR TX    -> GPIO 16

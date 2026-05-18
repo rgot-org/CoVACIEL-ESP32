@@ -46,12 +46,22 @@ void CoVACIEL_CAN::updateRx()
 			distance[DISTANCE_AR_GAUCHE] = (CANMessages[ARRIERE].data[0] << 8) | CANMessages[ARRIERE].data[1];
 			LOG_COVACIEL("dist ar\n");
 		}
-		if (_lastMessage & 0x10)
+		if (_lastMessage & 0x10)  // CAN_ID_AVANT_GAUCHE_CM : secteurs 3-10 en cm
 		{
-			distance[DISTANCE_AVANT]        = (CANMessages[AVANT_EXT].data[2] << 8) | CANMessages[AVANT_EXT].data[3];
-			distance[DISTANCE_AV_DROITE_90] = (CANMessages[AVANT_EXT].data[4] << 8) | CANMessages[AVANT_EXT].data[5];
-			distance[DISTANCE_AV_GAUCHE_90] = (CANMessages[AVANT_EXT].data[0] << 8) | CANMessages[AVANT_EXT].data[1];
-			LOG_COVACIEL("dist av ext\n");
+			for (int j = 0; j < 8; j++)
+				distance[3 + j] = CANMessages[AVANT_GAUCHE_CM].data[j] * 10;
+			LOG_COVACIEL("dist av ext cm\n");
+		}
+		if (_lastMessage & 0x20)  // CAN_ID_AVANT_DROITE_CM : secteurs 11-18 en cm
+		{
+			for (int j = 0; j < 8; j++)
+				distance[11 + j] = CANMessages[AVANT_DROITE_CM].data[j] * 10;
+			LOG_COVACIEL("dist av cm\n");
+		}
+		if (_lastMessage & 0x40)  // CAN_ID_LIDAR_CTRL
+		{
+			_lidarStart = CANMessages[LIDAR_CTRL].data[0] != 0;
+			LOG_COVACIEL("lidarStart:%d\n", _lidarStart);
 		}
 		_lastMessage = 0;
 		_newMessage4Json = 1;
@@ -86,9 +96,17 @@ void CoVACIEL_CAN::parseData()
 			_lastMessage |= 8;
 			CANMessages[ARRIERE] = msg;
 			break;
-		case CAN_ID_AVANT_EXT:
+		case CAN_ID_AVANT_GAUCHE_CM:
 			_lastMessage |= 0x10;
-			CANMessages[AVANT_EXT] = msg;
+			CANMessages[AVANT_GAUCHE_CM] = msg;
+			break;
+		case CAN_ID_AVANT_DROITE_CM:
+			_lastMessage |= 0x20;
+			CANMessages[AVANT_DROITE_CM] = msg;
+			break;
+		case CAN_ID_LIDAR_CTRL:
+			_lastMessage |= 0x40;
+			CANMessages[LIDAR_CTRL] = msg;
 			break;
 		case CAN_ID_ARRIERE_REQUEST:
 			// requête reçue par la carte arrière → répondre immédiatement avec la mesure courante
@@ -114,13 +132,9 @@ bool CoVACIEL_CAN::sendToCANBus(int can_id)
 		frame.data[4] = distance[DISTANCE_AV_DROITE_45] >> 8 & 0xFF;
 		frame.data[5] = distance[DISTANCE_AV_DROITE_45] & 0xFF;
 		break;
-	case CAN_ID_AVANT_EXT:
-		frame.data[0] = distance[DISTANCE_AV_GAUCHE_90] >> 8 & 0xFF;
-		frame.data[1] = distance[DISTANCE_AV_GAUCHE_90] & 0xFF;
-		frame.data[2] = distance[DISTANCE_AVANT] >> 8 & 0xFF;
-		frame.data[3] = distance[DISTANCE_AVANT] & 0xFF;
-		frame.data[4] = distance[DISTANCE_AV_DROITE_90] >> 8 & 0xFF;
-		frame.data[5] = distance[DISTANCE_AV_DROITE_90] & 0xFF;
+	case CAN_ID_AVANT_GAUCHE_CM:  // secteurs 3-10 en cm
+		for (int j = 0; j < 8; j++)
+			frame.data[j] = (uint8_t)min(distance[3 + j] / 10, 255);
 		break;
 	case CAN_ID_ARRIERE:
 		frame.data[0] = distance[DISTANCE_AR_GAUCHE] >> 8 & 0xFF;
@@ -129,6 +143,10 @@ bool CoVACIEL_CAN::sendToCANBus(int can_id)
 		frame.data[3] = distance[DISTANCE_AR] & 0xFF;
 		frame.data[4] = distance[DISTANCE_AR_DROITE] >> 8 & 0xFF;
 		frame.data[5] = distance[DISTANCE_AR_DROITE] & 0xFF;
+		break;
+	case CAN_ID_AVANT_DROITE_CM:  // secteurs 11-18 en cm
+		for (int j = 0; j < 8; j++)
+			frame.data[j] = (uint8_t)min(distance[11 + j] / 10, 255);
 		break;
 	case CAN_ID_DIRECTION:
 		frame.data[_direction] = 0xFF;
@@ -147,12 +165,20 @@ bool CoVACIEL_CAN::sendToCANBus(int can_id)
 		}
 		LOG_COVACIEL("vit:%d\tprop:%d\n", _vitesse, _propulsion);
 		break;
+	case CAN_ID_LIDAR_CTRL:
+		frame.data[0] = _lidarStart ? 0x01 : 0x00;
+		break;
 	default:
 		break;
 	}
 	frame.identifier = can_id;
 	frame.extd = 0;
-	frame.data_length_code = 6;
+	if (can_id == CAN_ID_AVANT_DROITE_CM || can_id == CAN_ID_AVANT_GAUCHE_CM)
+		frame.data_length_code = 8;
+	else if (can_id == CAN_ID_LIDAR_CTRL)
+		frame.data_length_code = 1;
+	else
+		frame.data_length_code = 6;
 	return twai_transmit(&frame, pdMS_TO_TICKS(10)) == ESP_OK;
 }
 
@@ -237,7 +263,7 @@ bool CoVACIEL_CAN::setDistAvDroite45(uint16_t mm, bool send2canbus)
 bool CoVACIEL_CAN::setDistAvDroite90(uint16_t mm, bool send2canbus)
 {
 	distance[DISTANCE_AV_DROITE_90] = mm;
-	if (send2canbus) return sendToCANBus(CAN_ID_AVANT_EXT);
+	if (send2canbus) return sendToCANBus(CAN_ID_AVANT_GAUCHE_CM);
 	return true;
 }
 
@@ -251,7 +277,7 @@ bool CoVACIEL_CAN::setDistAvGauche45(uint16_t mm, bool send2canbus)
 bool CoVACIEL_CAN::setDistAvGauche90(uint16_t mm, bool send2canbus)
 {
 	distance[DISTANCE_AV_GAUCHE_90] = mm;
-	if (send2canbus) return sendToCANBus(CAN_ID_AVANT_EXT);
+	if (send2canbus) return sendToCANBus(CAN_ID_AVANT_GAUCHE_CM);
 	return true;
 }
 
@@ -280,7 +306,8 @@ bool CoVACIEL_CAN::updateTx(int canId)
 		bool result = true;
 		result  = sendToCANBus(CAN_ID_ARRIERE);
 		result &= sendToCANBus(CAN_ID_AVANT);
-		result &= sendToCANBus(CAN_ID_AVANT_EXT);
+		result &= sendToCANBus(CAN_ID_AVANT_GAUCHE_CM);
+		result &= sendToCANBus(CAN_ID_AVANT_DROITE_CM);
 		result &= sendToCANBus(CAN_ID_DIRECTION);
 		result &= sendToCANBus(CAN_ID_PROPULSION);
 		return result;
@@ -378,6 +405,7 @@ bool CoVACIEL_CAN::setDistanceJson(String jsonDistance)
 	}
 	if (!sendToCANBus(CAN_ID_AVANT)) return false;
 	if (!sendToCANBus(CAN_ID_ARRIERE)) return false;
+	if (!sendToCANBus(CAN_ID_AVANT_DROITE_CM)) return false;
 	return true;
 }
 
@@ -388,8 +416,9 @@ bool CoVACIEL_CAN::setDistance(int* distances, byte length)
 		for (size_t i = 0; i < NB_SECTEURS; i++)
 			distance[i] = distances[i];
 		if (!sendToCANBus(CAN_ID_AVANT)) return false;
-		if (!sendToCANBus(CAN_ID_AVANT_EXT)) return false;
+		if (!sendToCANBus(CAN_ID_AVANT_GAUCHE_CM)) return false;
 		if (!sendToCANBus(CAN_ID_ARRIERE)) return false;
+		if (!sendToCANBus(CAN_ID_AVANT_DROITE_CM)) return false;
 		return true;
 	}
 	return false;
@@ -403,7 +432,7 @@ void CoVACIEL_CAN::canBus2SerialJson()
 	{
 		JsonDocument document;
 		JsonArray datas = document["payload"].to<JsonArray>();
-		for (size_t i = 0; i < 5; i++)
+		for (size_t i = 0; i < 6; i++)
 		{
 			if (CANMessages[i].identifier != 0)
 			{
@@ -422,15 +451,18 @@ void CoVACIEL_CAN::canBus2SerialJson()
 					data.add(distance[DISTANCE_AVANT]);
 					data.add(distance[DISTANCE_AV_DROITE_45]);
 					break;
-				case AVANT_EXT:
-					data.add(distance[DISTANCE_AV_GAUCHE_90]);
-					data.add(distance[DISTANCE_AVANT]);
-					data.add(distance[DISTANCE_AV_DROITE_90]);
+				case AVANT_GAUCHE_CM:  // secteurs 3-10 en cm
+					for (int j = 0; j < 8; j++)
+						data.add(distance[3 + j] / 10);
 					break;
 				case ARRIERE:
 					data.add(distance[DISTANCE_AR_GAUCHE]);
 					data.add(distance[DISTANCE_AR]);
 					data.add(distance[DISTANCE_AR_DROITE]);
+					break;
+				case AVANT_DROITE_CM:  // secteurs 11-18 en cm
+					for (int j = 0; j < 8; j++)
+						data.add(distance[11 + j] / 10);
 					break;
 				default:
 					break;
@@ -460,6 +492,17 @@ String CoVACIEL_CAN::parseDistancesJson()
 	return "";
 }
 
+bool CoVACIEL_CAN::setLidarStart(bool start)
+{
+	_lidarStart = start;
+	return sendToCANBus(CAN_ID_LIDAR_CTRL);
+}
+
+bool CoVACIEL_CAN::getLidarStart()
+{
+	return _lidarStart;
+}
+
 String CoVACIEL_CAN::parseCanFrame2json()
 {
 	parseData();
@@ -468,7 +511,7 @@ String CoVACIEL_CAN::parseCanFrame2json()
 		JsonDocument document;
 		JsonArray datas = document["payload"].to<JsonArray>();
 		String _str;
-		for (size_t i = 0; i < 5; i++) // 5 messages : PROPULSION, DIRECTION, AVANT, ARRIERE, AVANT_EXT
+		for (size_t i = 0; i < 6; i++) // 6 messages : PROPULSION, DIRECTION, AVANT, ARRIERE, AVANT_GAUCHE_CM, AVANT_DROITE_CM
 		{
 			int test = _lastMessage & (1 << i);
 			LOG_COVACIEL("lastMsg:%d\ti:%d\ttest:%d\n", _lastMessage, i, test);

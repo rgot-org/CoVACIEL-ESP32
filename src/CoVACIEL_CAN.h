@@ -10,10 +10,12 @@ typedef twai_message_t CanFrame;
 #define CAN_ID_PROPULSION 0x660
 #define CAN_ID_VITESSE 0x662
 #define CAN_ID_DIRECTION 0x664
+#define CAN_ID_AVANT_DROITE_CM 0x665  // secteurs 11-18 en cm (1 octet/secteur)
 #define CAN_ID_AVANT 0x666
 #define CAN_ID_ARRIERE 0x667
-#define CAN_ID_AVANT_EXT 0x0668
+#define CAN_ID_AVANT_GAUCHE_CM 0x0668  // secteurs 3-10 en cm (1 octet/secteur)
 #define CAN_ID_ARRIERE_REQUEST 0x669  // trame de requête distance arrière (calculateur → carte arrière)
+#define CAN_ID_LIDAR_CTRL 0x670       // commande démarrage/arrêt lidar (byte0: 1=start, 0=stop)
 
 #define DISTANCE_AVANT 11
 #define DISTANCE_AV_GAUCHE_45 9
@@ -42,14 +44,16 @@ enum Can_id {
 	DIRECTION,
 	AVANT,
 	ARRIERE,
-	AVANT_EXT
+	AVANT_GAUCHE_CM,
+	AVANT_DROITE_CM,
+	LIDAR_CTRL
 };
 
 class CoVACIEL_CAN
 {
 protected:
 
-	CanFrame CANMessages[5];
+	CanFrame CANMessages[7];
 
 public:
 	/// <summary>
@@ -221,6 +225,19 @@ public:
 	/// <param name="length">longueur du tableau</param>
 	/// <returns></returns>
 	bool setDistance(int* distances, byte length);
+
+	/// <summary>
+	/// envoie une commande de démarrage ou d'arrêt du lidar sur le bus CAN
+	/// </summary>
+	/// <param name="start">true pour démarrer, false pour arrêter</param>
+	/// <returns>true si OK</returns>
+	bool setLidarStart(bool start);
+
+	/// <summary>
+	/// retourne l'état de démarrage du lidar reçu depuis le bus CAN
+	/// </summary>
+	/// <returns>true si le lidar doit être démarré</returns>
+	bool getLidarStart();
 	/// <summary>
 	/// definit les distances � partir d'un objet json
 	/// l'objet est un tableau contenant les diferrentes distances sur 23 secteurs
@@ -253,6 +270,7 @@ private:
 	byte _direction = 0;
 	int16_t _vitesse = 0;
 	int16_t _angle = 0;
+	bool _lidarStart = false;
 
 	bool sendToCANBus(int can_id);
 	void parseData();
