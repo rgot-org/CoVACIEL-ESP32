@@ -4,6 +4,107 @@ La classe `CoVACIEL_CAN` gère la communication sur le bus CAN entre les différ
 
 ---
 
+## Identifiants CAN
+
+### `CAN_ID_PROPULSION` — `0x660` — DLC 6
+
+Commande de propulsion et vitesse. Deux modes exclusifs :
+
+| Octet | Valeur | Description |
+|---|---|---|
+| `data[0]` | `0xFF` | Commande : **accélérer** |
+| `data[1]` | `0xFF` | Commande : **ralentir** |
+| `data[2]` | `0xFF` | Commande : **stop** |
+| `data[3]` | `0xFF` | Commande : **reculer** |
+| `data[4–5]` | int16_t big-endian | Vitesse signée (−100 à +100) — utilisé à la place des octets 0–3 quand `_propulsion = 255` |
+
+> Un seul des octets 0–3 vaut `0xFF` à la fois ; les autres sont à `0x00`.
+
+---
+
+### `CAN_ID_DIRECTION` — `0x664` — DLC 6
+
+Commande de direction et angle :
+
+| Octet | Valeur | Description |
+|---|---|---|
+| `data[0]` | `0xFF` | Commande : **gauche** |
+| `data[1]` | `0xFF` | Commande : **droite** |
+| `data[2]` | `0xFF` | Commande : **tout droit** |
+| `data[3]` | `0x00` | (réservé) |
+| `data[4–5]` | int16_t big-endian | Angle en degrés |
+
+> Un seul des octets 0–2 vaut `0xFF` à la fois.
+
+---
+
+### `CAN_ID_AVANT` — `0x666` — DLC 6
+
+Distances avant en millimètres :
+
+| Octet | Description |
+|---|---|
+| `data[0–1]` | Distance avant gauche 45° (uint16_t big-endian, mm) |
+| `data[2–3]` | Distance avant centre (uint16_t big-endian, mm) |
+| `data[4–5]` | Distance avant droite 45° (uint16_t big-endian, mm) |
+
+---
+
+### `CAN_ID_AVANT_GAUCHE_CM` — `0x668` — DLC 8
+
+Distances secteurs 3 à 10 en centimètres (1 octet par secteur, saturé à 255 cm) :
+
+| Octet | Secteur |
+|---|---|
+| `data[0]` | Secteur 3 |
+| `data[1]` | Secteur 4 |
+| … | … |
+| `data[7]` | Secteur 10 |
+
+---
+
+### `CAN_ID_AVANT_DROITE_CM` — `0x665` — DLC 8
+
+Distances secteurs 11 à 18 en centimètres (1 octet par secteur, saturé à 255 cm) :
+
+| Octet | Secteur |
+|---|---|
+| `data[0]` | Secteur 11 |
+| `data[1]` | Secteur 12 |
+| … | … |
+| `data[7]` | Secteur 18 |
+
+---
+
+### `CAN_ID_ARRIERE` — `0x667` — DLC 6
+
+Distances arrière en millimètres :
+
+| Octet | Description |
+|---|---|
+| `data[0–1]` | Distance arrière gauche (uint16_t big-endian, mm) |
+| `data[2–3]` | Distance arrière centre (uint16_t big-endian, mm) |
+| `data[4–5]` | Distance arrière droite (uint16_t big-endian, mm) |
+
+---
+
+### `CAN_ID_ARRIERE_REQUEST` — `0x669` — DLC 0
+
+Trame vide (aucun octet de données). Envoyée par le calculateur pour demander à la carte arrière d'émettre immédiatement sa trame `CAN_ID_ARRIERE`.
+
+---
+
+### `CAN_ID_LIDAR_CTRL` — `0x670` — DLC 1
+
+Commande de démarrage ou d'arrêt du lidar :
+
+| Octet | Valeur | Description |
+|---|---|---|
+| `data[0]` | `0x01` | Démarrer le lidar |
+| `data[0]` | `0x00` | Arrêter le lidar |
+
+---
+
 ## Initialisation
 
 ### `bool init(uint8_t rx, uint8_t tx)`
