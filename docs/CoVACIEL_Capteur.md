@@ -167,19 +167,7 @@ Force une mise à jour du tableau `distance[]`. À appeler si vous n'utilisez pa
 >
 > Conséquence : l'**avant** du véhicule correspond au secteur **180°** du LiDAR.
 
-```mermaid
-flowchart TB
-    AV["⬆ AVANT du véhicule\n180° — secteur 12"]
-    G["⬅ GAUCHE — 90° — sect. 6"]
-    L(["LiDAR\ncâble → arrière 🔌"])
-    D["DROITE ➡ — 270° — sect. 19"]
-    AR["⬇ ARRIÈRE du véhicule — 0° — sect. 0\n🔌 câble ici"]
-
-    AV --- L
-    G --- L
-    L --- D
-    L --- AR
-```
+![Orientation du LiDAR dans le véhicule](lidar_orientation.svg)
 
 ---
 
