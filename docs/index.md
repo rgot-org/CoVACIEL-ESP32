@@ -37,20 +37,20 @@ Télécharger le dépôt et copier le dossier `CoVACIEL` dans `Arduino/libraries
 
 ## Architecture du système
 
-```
-┌─────────────────┐        Bus CAN 250 kbit/s         ┌──────────────────┐
-│   Calculateur   │ ◄────────────────────────────────► │  Carte Avant     │
-│  (décision,     │                                    │  (distances av.) │
-│   commandes)    │ ◄────────────────────────────────► │  Carte Arrière   │
-└────────┬────────┘                                    │  (distances ar.) │
-         │                                             └──────────────────┘
-         │ PWM
-         ▼
-┌─────────────────┐
-│  Actionneurs    │
-│  Direction +    │
-│  Propulsion     │
-└─────────────────┘
+```mermaid
+flowchart LR
+    CA["Carte Avant\n(distances av.)"]
+    CAR["Carte Arrière\n(distances ar.)"]
+    CALC["Calculateur\n(décision, commandes)"]
+    CACT["Carte Actionneurs"]
+    DIR["Servo Direction"]
+    PROP["ESC Propulsion"]
+
+    CA   <-->|"CAN 250 kbit/s"| CALC
+    CAR  <-->|"CAN 250 kbit/s"| CALC
+    CALC <-->|"CAN 250 kbit/s"| CACT
+    CACT  -->|"PWM"| DIR
+    CACT  -->|"PWM"| PROP
 ```
 
 ### Pattern requête/réponse — distance arrière
