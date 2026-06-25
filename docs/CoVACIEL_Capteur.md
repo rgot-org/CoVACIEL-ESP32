@@ -166,17 +166,20 @@ Force une mise à jour du tableau `distance[]`. À appeler si vous n'utilisez pa
 > **Important :** le câble de données du LiDAR doit être orienté vers **l'arrière** du véhicule.
 >
 > Conséquence : l'**avant** du véhicule correspond au secteur **180°** du LiDAR.
->
-> ```
->          AVANT véhicule
->               ↑
->              180°
->    90° ←  [LiDAR]  → 270°
->               0°
->               ↓
->          ARRIÈRE véhicule
->          (câble ici)
-> ```
+
+```mermaid
+flowchart TB
+    AV["⬆ AVANT du véhicule\n180° — secteur 12"]
+    G["⬅ GAUCHE — 90° — sect. 6"]
+    L(["LiDAR\ncâble → arrière 🔌"])
+    D["DROITE ➡ — 270° — sect. 19"]
+    AR["⬇ ARRIÈRE du véhicule — 0° — sect. 0\n🔌 câble ici"]
+
+    AV --- L
+    G --- L
+    L --- D
+    L --- AR
+```
 
 ---
 
