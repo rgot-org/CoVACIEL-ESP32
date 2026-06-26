@@ -37,21 +37,7 @@ Télécharger le dépôt et copier le dossier `CoVACIEL` dans `Arduino/libraries
 
 ## Architecture du système
 
-```mermaid
-flowchart LR
-    CA["Carte Avant\n(distances av.)"]
-    CAR["Carte Arrière\n(distances ar.)"]
-    CALC["Calculateur\n(décision, commandes)"]
-    CACT["Carte Actionneurs"]
-    DIR["Servo Direction"]
-    PROP["ESC Propulsion"]
-
-    CA   <-->|"CAN 250 kbit/s"| CALC
-    CAR  <-->|"CAN 250 kbit/s"| CALC
-    CALC <-->|"CAN 250 kbit/s"| CACT
-    CACT  -->|"PWM"| DIR
-    CACT  -->|"PWM"| PROP
-```
+![Architecture du système CoVACIEL](architecture.svg)
 
 ### Pattern requête/réponse — distance arrière
 
@@ -95,7 +81,7 @@ void loop() {
 | `04_Direction` | Balayage du servo de direction + calibrage interactif |
 | `05_Propulsion` | Séquence avant/arrêt/arrière + calibrage ESC |
 | `06_RadarUS` | Lecture du radar ultrasonique I2C |
-| `07_Lidar` | Affichage des 25 secteurs RPLidar |
+| `07_Lidar` | Affichage des 23 secteurs RPLidar |
 
 ---
 

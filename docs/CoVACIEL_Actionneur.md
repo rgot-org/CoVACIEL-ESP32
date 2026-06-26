@@ -6,29 +6,6 @@ Les deux classes utilisent un signal PWM à **50 Hz** (période 20 ms) avec une 
 
 ---
 
-## Constantes globales
-
-```cpp
-#define RESOLUTION      14         // résolution PWM (14 bits)
-#define SERVO_BASE_FREQ 50         // fréquence PWM en Hz
-#define DIRECTION_CHANNEL  0       // canal LEDC pour la direction
-#define PROPULSION_CHANNEL 1       // canal LEDC pour la propulsion
-
-const int pleineEchelle = 16383;   // 2^14 - 1
-const int angleDegreMax = 18;      // débattement max en degrés (±18°)
-```
-
-### Broche LED selon la carte
-
-| Carte | `LED_PIN` |
-|---|---|
-| M5Stack ATOM | 27 |
-| ESP32-S3-Zero | 21 |
-| M5Stack Stamp C3 | 2 |
-| M5Stack Stamp S3 | 21 |
-
----
-
 ## CoVACIEL_direction
 
 Pilote un servo de direction via PWM. Le centre correspond à la position "tout droit", les butées gauche et droite sont configurables et persistées en mémoire flash (via `Preferences`).

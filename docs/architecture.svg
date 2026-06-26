@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 720 190"
+   font-family="Arial, sans-serif"
+   version="1.1"
+   id="svg19"
+   sodipodi:docname="architecture.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs19" />
+  <sodipodi:namedview
+     id="namedview19"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.4417122"
+     inkscape:cx="361.37588"
+     inkscape:cy="-14.912824"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg19" />
+  <!-- Carte Avant -->
+  <rect
+     x="10"
+     y="44"
+     width="148"
+     height="42"
+     rx="4"
+     fill="#eaf4fb"
+     stroke="#1a5276"
+     stroke-width="1.5"
+     id="rect1" />
+  <text
+     x="84"
+     y="62"
+     text-anchor="middle"
+     font-size="12"
+     font-weight="bold"
+     fill="#1a5276"
+     id="text1">Carte Avant</text>
+  <text
+     x="84"
+     y="78"
+     text-anchor="middle"
+     font-size="10"
+     fill="#555"
+     id="text2">(distances av.)</text>
+  <!-- Carte Arrière -->
+  <rect
+     x="10"
+     y="104"
+     width="148"
+     height="42"
+     rx="4"
+     fill="#eaf4fb"
+     stroke="#1a5276"
+     stroke-width="1.5"
+     id="rect2" />
+  <text
+     x="84"
+     y="122"
+     text-anchor="middle"
+     font-size="12"
+     font-weight="bold"
+     fill="#1a5276"
+     id="text3">Carte Arrière</text>
+  <text
+     x="84"
+     y="138"
+     text-anchor="middle"
+     font-size="10"
+     fill="#555"
+     id="text4">(distances ar.)</text>
+  <!-- Calculateur -->
+  <rect
+     x="215"
+     y="70"
+     width="158"
+     height="60"
+     rx="4"
+     fill="#d5e8d4"
+     stroke="#2e7d32"
+     stroke-width="2"
+     id="rect4" />
+  <text
+     x="294"
+     y="95"
+     text-anchor="middle"
+     font-size="13"
+     font-weight="bold"
+     fill="#1a4d1a"
+     id="text5">Calculateur</text>
+  <text
+     x="294"
+     y="113"
+     text-anchor="middle"
+     font-size="10"
+     fill="#444"
+     id="text6">(décision, commandes)</text>
+  <!-- Carte Actionneurs -->
+  <rect
+     x="420"
+     y="78"
+     width="148"
+     height="44"
+     rx="4"
+     fill="#fff3e0"
+     stroke="#e07b00"
+     stroke-width="1.5"
+     id="rect6" />
+  <text
+     x="494"
+     y="97"
+     text-anchor="middle"
+     font-size="12"
+     font-weight="bold"
+     fill="#b45309"
+     id="text7">Carte</text>
+  <text
+     x="494"
+     y="113"
+     text-anchor="middle"
+     font-size="12"
+     font-weight="bold"
+     fill="#b45309"
+     id="text8">Actionneurs</text>
+  <!-- Servo Direction -->
+  <rect
+     x="595"
+     y="44"
+     width="115"
+     height="42"
+     rx="4"
+     fill="#fce4ec"
+     stroke="#c62828"
+     stroke-width="1.5"
+     id="rect8" />
+  <text
+     x="652"
+     y="62"
+     text-anchor="middle"
+     font-size="11"
+     font-weight="bold"
+     fill="#c62828"
+     id="text9">Servo</text>
+  <text
+     x="652"
+     y="78"
+     text-anchor="middle"
+     font-size="11"
+     font-weight="bold"
+     fill="#c62828"
+     id="text10">Direction</text>
+  <!-- ESC Propulsion -->
+  <rect
+     x="595"
+     y="104"
+     width="115"
+     height="42"
+     rx="4"
+     fill="#fce4ec"
+     stroke="#c62828"
+     stroke-width="1.5"
+     id="rect10" />
+  <text
+     x="652"
+     y="122"
+     text-anchor="middle"
+     font-size="11"
+     font-weight="bold"
+     fill="#c62828"
+     id="text11">ESC</text>
+  <text
+     x="652"
+     y="138"
+     text-anchor="middle"
+     font-size="11"
+     font-weight="bold"
+     fill="#c62828"
+     id="text12">Propulsion</text>
+  <!-- CAN: Carte Avant ↔ Calculateur -->
+  <line
+     x1="161"
+     y1="66"
+     x2="212"
+     y2="83"
+     stroke="#1a5276"
+     stroke-width="1.8"
+     id="line12" />
+  <polygon
+     points="215,85 207.3,77.0 203.9,86.4"
+     fill="#1a5276"
+     id="polygon12" />
+  <polygon
+     points="158,65 169.1,63.6 165.7,73.0"
+     fill="#1a5276"
+     id="polygon13" />
+  <!-- CAN: Carte Arrière ↔ Calculateur -->
+  <line
+     x1="161"
+     y1="134"
+     x2="212"
+     y2="117"
+     stroke="#1a5276"
+     stroke-width="1.8"
+     id="line13" />
+  <polygon
+     points="215,115 207.3,123.0 203.9,113.6"
+     fill="#1a5276"
+     id="polygon14" />
+  <polygon
+     points="158,135 165.7,127.0 169.1,136.4"
+     fill="#1a5276"
+     id="polygon15" />
+  <!-- Label CAN (connexions gauche ↔ calculateur) -->
+  <text
+     x="190.88556"
+     y="67.572205"
+     text-anchor="middle"
+     font-size="9px"
+     fill="#1a5276"
+     id="text15">CAN</text>
+  <text
+     x="186.04369"
+     y="119.20435"
+     text-anchor="middle"
+     font-size="9px"
+     fill="#1a5276"
+     id="text15-2">CAN</text>
+  <!-- CAN: Calculateur ↔ Carte Actionneurs -->
+  <line
+     x1="383"
+     y1="100"
+     x2="410"
+     y2="100"
+     stroke="#1a5276"
+     stroke-width="1.8"
+     id="line16" />
+  <polygon
+     points="420,100 410,95 410,105"
+     fill="#1a5276"
+     id="polygon16" />
+  <polygon
+     points="373,100 383,95 383,105"
+     fill="#1a5276"
+     id="polygon17" />
+  <text
+     x="396.73569"
+     y="93.994553"
+     text-anchor="middle"
+     font-size="9px"
+     fill="#1a5276"
+     id="text17">CAN</text>
+  <!-- PWM: Carte Actionneurs → Servo Direction -->
+  <line
+     x1="568"
+     y1="90"
+     x2="592"
+     y2="67"
+     stroke="#2e7d32"
+     stroke-width="1.8"
+     id="line17" />
+  <polygon
+     points="595,65 591.8,73.3 586.4,67.5"
+     fill="#2e7d32"
+     id="polygon18" />
+  <text
+     x="580.71661"
+     y="62.45504"
+     text-anchor="middle"
+     font-size="9px"
+     fill="#2e7d32"
+     id="text18">PWM</text>
+  <!-- PWM: Carte Actionneurs → ESC Propulsion -->
+  <line
+     x1="568"
+     y1="110"
+     x2="592"
+     y2="133"
+     stroke="#2e7d32"
+     stroke-width="1.8"
+     id="line18" />
+  <polygon
+     points="595,135 586.4,132.5 591.8,126.7"
+     fill="#2e7d32"
+     id="polygon19" />
+  <text
+     x="578.75476"
+     y="143.26158"
+     text-anchor="middle"
+     font-size="9px"
+     fill="#2e7d32"
+     id="text19">PWM</text>
+</svg>
