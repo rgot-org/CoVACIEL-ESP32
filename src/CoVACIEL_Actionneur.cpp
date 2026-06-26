@@ -1,5 +1,13 @@
 #include "CoVACIEL.h"
 
+// Compatibilité Arduino Core v2 / v3
+// Core v2 : ledcSetup + ledcAttachPin + ledcWrite
+// Core v3 : ledcAttachChannel + ledcWriteChannel
+#if ESP_ARDUINO_VERSION_MAJOR < 3
+  #define ledcAttachChannel(pin, freq, res, ch) do { ledcSetup(ch, freq, res); ledcAttachPin(pin, ch); } while(0)
+  #define ledcWriteChannel(ch, val)             ledcWrite(ch, val)
+#endif
+
 Preferences CoVACIEL_prefs;
 void CoVACIEL_propulsion::init(int pin)
 {

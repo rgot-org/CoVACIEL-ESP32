@@ -19,7 +19,20 @@ CoVACIEL est une bibliothèque Arduino pour le véhicule autonome CoVACIEL, à d
 ## Dépendances
 
 - [ArduinoJson](https://arduinojson.org/) ≥ 7.x
-- ESP32 Arduino Core ≥ 3.x (API TWAI native, `driver/twai.h`)
+- ESP32 Arduino Core 2.x ou 3.x 
+> **PlatformIO (VS Code)** : le framework `arduino` de PlatformIO utilise Arduino Core 2. Pour utiliser Core 3 préférer l'extension **pioarduino**  :
+>
+> ```ini
+> [env:esp32]
+> platform = https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip
+> board = waveshare_esp32_s3_zero
+> framework = arduino
+>build_flags =
+>	-DARDUINO_USB_CDC_ON_BOOT=1
+>	-DARDUINO_USB_MODE=1
+> upload_speed = 921600
+> monitor_speed = 115200
+> ```
 
 ---
 
