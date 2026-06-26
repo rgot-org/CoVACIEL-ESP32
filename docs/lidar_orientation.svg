@@ -1,33 +1,500 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" font-family="Arial, sans-serif">
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 560 420"
+   font-family="Arial, sans-serif"
+   version="1.1"
+   id="svg63"
+   sodipodi:docname="lidar_orientation.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs63" />
+  <sodipodi:namedview
+     id="namedview63"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.3160714"
+     inkscape:cx="299.75577"
+     inkscape:cy="264.80326"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg63" />
+  <!-- Tirets de secteur — 23 secteurs à 16° (r=55 → r=68) -->
+  <g
+     stroke="#aaa"
+     stroke-width="1"
+     id="g23">
+    <line
+       x1="280.0"
+       y1="255.0"
+       x2="280.0"
+       y2="268.0"
+       id="line1" />
+    <line
+       x1="264.8"
+       y1="252.9"
+       x2="261.3"
+       y2="265.4"
+       id="line2" />
+    <line
+       x1="250.9"
+       y1="246.6"
+       x2="244.0"
+       y2="257.7"
+       id="line3" />
+    <line
+       x1="239.1"
+       y1="236.8"
+       x2="229.5"
+       y2="245.5"
+       id="line4" />
+    <line
+       x1="230.6"
+       y1="224.1"
+       x2="218.9"
+       y2="229.8"
+       id="line5" />
+    <line
+       x1="225.8"
+       y1="209.6"
+       x2="213.0"
+       y2="211.8"
+       id="line6" />
+    <line
+       x1="225.3"
+       y1="194.3"
+       x2="212.4"
+       y2="192.9"
+       id="line7" />
+    <line
+       x1="229.0"
+       y1="179.4"
+       x2="217.0"
+       y2="174.5"
+       id="line8" />
+    <line
+       x1="236.7"
+       y1="166.1"
+       x2="226.4"
+       y2="158.1"
+       id="line9" />
+    <line
+       x1="247.7"
+       y1="155.5"
+       x2="240.0"
+       y2="145.0"
+       id="line10" />
+    <line
+       x1="261.2"
+       y1="148.3"
+       x2="256.7"
+       y2="136.1"
+       id="line11" />
+    <line
+       x1="276.2"
+       y1="145.1"
+       x2="275.3"
+       y2="132.2"
+       id="line12" />
+    <line
+       x1="291.4"
+       y1="146.2"
+       x2="294.1"
+       y2="133.5"
+       id="line13" />
+    <line
+       x1="305.8"
+       y1="151.4"
+       x2="311.9"
+       y2="140.0"
+       id="line14" />
+    <line
+       x1="318.2"
+       y1="160.4"
+       x2="327.2"
+       y2="151.1"
+       id="line15" />
+    <line
+       x1="327.6"
+       y1="172.5"
+       x2="338.9"
+       y2="166.0"
+       id="line16" />
+    <line
+       x1="333.4"
+       y1="186.7"
+       x2="346.0"
+       y2="183.6"
+       id="line17" />
+    <line
+       x1="335.0"
+       y1="201.9"
+       x2="348.0"
+       y2="202.4"
+       id="line18" />
+    <line
+       x1="332.3"
+       y1="217.0"
+       x2="344.7"
+       y2="221.0"
+       id="line19" />
+    <line
+       x1="325.6"
+       y1="230.8"
+       x2="336.4"
+       y2="238.0"
+       id="line20" />
+    <line
+       x1="315.4"
+       y1="242.1"
+       x2="323.7"
+       y2="252.1"
+       id="line21" />
+    <line
+       x1="302.4"
+       y1="250.2"
+       x2="307.7"
+       y2="262.1"
+       id="line22" />
+    <line
+       x1="287.7"
+       y1="254.5"
+       x2="289.5"
+       y2="267.3"
+       id="line23" />
+  </g>
+  <!-- Diagonales véhicule ±45° (LiDAR 135° et 225°, du bord r=55 à r=100) -->
+  <g
+     stroke="#e07b00"
+     stroke-width="1.5"
+     stroke-dasharray="5,3"
+     id="g25"
+     style="fill:#ff0000;stroke:#fe0000;stroke-opacity:1">
+    <line
+       x1="241.1"
+       y1="161.1"
+       x2="209.3"
+       y2="129.3"
+       id="line24"
+       style="fill:#ff0000;stroke:#fe0000;stroke-opacity:1" />
+    <line
+       x1="318.9"
+       y1="161.1"
+       x2="350.7"
+       y2="129.3"
+       id="line25"
+       style="fill:#ff0000;stroke:#fe0000;stroke-opacity:1" />
+  </g>
+  <!-- Cercle LiDAR (recouvre la base des tirets) -->
+  <circle
+     cx="280"
+     cy="200"
+     r="55"
+     fill="#eaf4fb"
+     stroke="#1a5276"
+     stroke-width="2"
+     id="circle25" />
+  <text
+     x="280"
+     y="196"
+     text-anchor="middle"
+     font-size="15"
+     font-weight="bold"
+     fill="#1a5276"
+     id="text25">LiDAR</text>
+  <text
+     x="280"
+     y="215"
+     text-anchor="middle"
+     font-size="11"
+     fill="#666"
+     id="text26">câble → arrière</text>
+  <!-- Numéros de secteur (r=78), 23 secteurs à 16° -->
+  <g
+     font-size="8"
+     fill="#777"
+     text-anchor="middle"
+     dominant-baseline="middle"
+     id="g49">
+    <text
+       x="264"
+       y="278.0"
+       id="text27">0</text>
+    <text
+       x="258.5"
+       y="275.0"
+       id="text28">1</text>
+    <text
+       x="238.7"
+       y="266.1"
+       id="text29">2</text>
+    <text
+       x="222.0"
+       y="252.2"
+       id="text30">3</text>
+    <text
+       x="209.9"
+       y="234.2"
+       id="text31">4</text>
+    <text
+       x="203.2"
+       y="213.5"
+       id="text32">5</text>
+    <text
+       x="202.4"
+       y="191.9"
+       id="text33">6</text>
+    <text
+       x="207.7"
+       y="170.8"
+       id="text34">7</text>
+    <text
+       x="218.5"
+       y="152.0"
+       id="text35">8</text>
+    <text
+       x="234.2"
+       y="136.9"
+       id="text36">9</text>
+    <text
+       x="253.3"
+       y="126.7"
+       id="text37">10</text>
+    <text
+       x="274.6"
+       y="122.2"
+       id="text38">11</text>
+    <text
+       x="296.2"
+       y="123.7"
+       id="text39">12</text>
+    <text
+       x="316.6"
+       y="131.1"
+       id="text40">13</text>
+    <text
+       x="334.2"
+       y="143.9"
+       id="text41">14</text>
+    <text
+       x="347.6"
+       y="161.0"
+       id="text42">15</text>
+    <text
+       x="355.7"
+       y="181.1"
+       id="text43">16</text>
+    <text
+       x="358.0"
+       y="202.7"
+       id="text44">17</text>
+    <text
+       x="354.2"
+       y="224.1"
+       id="text45">18</text>
+    <text
+       x="344.7"
+       y="243.6"
+       id="text46">19</text>
+    <text
+       x="330.1"
+       y="259.8"
+       id="text47">20</text>
+    <text
+       x="311.7"
+       y="271.3"
+       id="text48">21</text>
+    <text
+       x="290.9"
+       y="277.2"
+       id="text49">22</text>
+  </g>
+  <!-- Labels véhicule ±45° -->
+  <text
+     x="199"
+     y="119"
+     text-anchor="middle"
+     font-size="10"
+     font-weight="bold"
+     fill="#e07b00"
+     id="text50"
+     style="-inkscape-font-specification:'Arial, sans-serif, Bold';font-family:Arial, sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:13.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff0000;fill-opacity:1">−45° véh.</text>
+  <text
+     x="361"
+     y="119"
+     text-anchor="middle"
+     font-size="10"
+     font-weight="bold"
+     fill="#e07b00"
+     id="text51"
+     style="-inkscape-font-specification:'Arial, sans-serif, Bold';font-family:Arial, sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:13.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff0000;fill-opacity:1">+45° véh.</text>
   <!-- AVANT (haut) -->
-  <text x="280" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a5276">AVANT du véhicule</text>
-  <text x="280" y="40" text-anchor="middle" font-size="12" fill="#1a5276">180° — secteur 12</text>
-  <line x1="280" y1="145" x2="280" y2="73" stroke="#1a5276" stroke-width="2.5"/>
-  <polygon points="280,58 273,73 287,73" fill="#1a5276"/>
-
-  <!-- Cercle LiDAR (centre) -->
-  <circle cx="280" cy="200" r="55" fill="#eaf4fb" stroke="#1a5276" stroke-width="2"/>
-  <text x="280" y="196" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a5276">LiDAR</text>
-  <text x="280" y="215" text-anchor="middle" font-size="11" fill="#666">câble → arrière</text>
-
+  <text
+     x="280"
+     y="22"
+     text-anchor="middle"
+     font-size="14"
+     font-weight="bold"
+     fill="#1a5276"
+     id="text52"
+     style="fill:#ff0000">AVANT du véhicule</text>
+  <text
+     x="280.75986"
+     y="50.637722"
+     text-anchor="middle"
+     font-size="12"
+     fill="#1a5276"
+     id="text53"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Arial, sans-serif;-inkscape-font-specification:'Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">176° LiDAR — sect. 11</text>
+  <text
+     x="280"
+     y="37.523746"
+     text-anchor="middle"
+     font-size="11"
+     font-weight="bold"
+     fill="#e07b00"
+     id="text54"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Arial, sans-serif;-inkscape-font-specification:'Arial, sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff0000;fill-opacity:1">0° véhicule</text>
+  <line
+     x1="280"
+     y1="145"
+     x2="280"
+     y2="88"
+     stroke="#1a5276"
+     stroke-width="2.5"
+     id="line54" />
+  <polygon
+     points="280,73 273,88 287,88"
+     fill="#1a5276"
+     id="polygon54" />
   <!-- ARRIÈRE (bas) -->
-  <line x1="280" y1="255" x2="280" y2="337" stroke="#922b21" stroke-width="2.5"/>
-  <polygon points="280,352 273,337 287,337" fill="#922b21"/>
-  <text x="280" y="370" text-anchor="middle" font-size="14" font-weight="bold" fill="#922b21">ARRIÈRE du véhicule</text>
-  <text x="280" y="387" text-anchor="middle" font-size="12" fill="#922b21">0° — secteur 0</text>
-  <text x="280" y="404" text-anchor="middle" font-size="11" fill="#922b21">(câble ici)</text>
-
+  <line
+     x1="280.0061"
+     y1="255"
+     x2="280.0061"
+     y2="338.10001"
+     stroke="#922b21"
+     stroke-width="2.51671"
+     id="line55" />
+  <polygon
+     points="280,352 273,337 287,337"
+     fill="#922b21"
+     id="polygon55" />
+  <text
+     x="279.24017"
+     y="385.95657"
+     text-anchor="middle"
+     font-size="14px"
+     font-weight="bold"
+     fill="#922b21"
+     id="text55">ARRIÈRE du véhicule</text>
+  <text
+     x="279.24017"
+     y="402.95657"
+     text-anchor="middle"
+     font-size="12"
+     fill="#922b21"
+     id="text56"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Arial, sans-serif;-inkscape-font-specification:'Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">0° LiDAR — secteur 0</text>
+  <text
+     x="276.20081"
+     y="365.24829"
+     text-anchor="middle"
+     font-size="11"
+     fill="#922b21"
+     id="text57"
+     style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:13.3333px;font-family:Arial, sans-serif;-inkscape-font-specification:'Arial, sans-serif, Heavy';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-anchor:middle;fill:#922b21">(câble ici)</text>
   <!-- GAUCHE (gauche) -->
-  <line x1="225" y1="200" x2="141" y2="200" stroke="#2e7d32" stroke-width="2.5"/>
-  <polygon points="126,200 141,193 141,207" fill="#2e7d32"/>
-  <text x="80" y="186" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">GAUCHE</text>
-  <text x="80" y="204" text-anchor="middle" font-size="12" fill="#2e7d32">90° — sect. 6</text>
-
+  <line
+     x1="225"
+     y1="200"
+     x2="141"
+     y2="200"
+     stroke="#2e7d32"
+     stroke-width="2.5"
+     id="line57"
+     style="stroke:#1a5276;stroke-opacity:1" />
+  <polygon
+     points="126,200 141,193 141,207"
+     fill="#2e7d32"
+     id="polygon57"
+     style="fill:#1a5276;fill-opacity:1" />
+  <text
+     x="80"
+     y="183"
+     text-anchor="middle"
+     font-size="14"
+     font-weight="bold"
+     fill="#2e7d32"
+     id="text58"
+     style="fill:#ff0000">GAUCHE</text>
+  <text
+     x="82.27951"
+     y="219.51561"
+     text-anchor="middle"
+     font-size="12"
+     fill="#2e7d32"
+     id="text59"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Arial, sans-serif;-inkscape-font-specification:'Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#1a5276;fill-opacity:1">80° LiDAR — sect. 5</text>
+  <text
+     x="79.240166"
+     y="204.36227"
+     text-anchor="middle"
+     font-size="11"
+     font-weight="bold"
+     fill="#e07b00"
+     id="text60"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Arial, sans-serif;-inkscape-font-specification:'Arial, sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff0000;fill-opacity:1">−90° véhicule</text>
   <!-- DROITE (droite) -->
-  <line x1="335" y1="200" x2="419" y2="200" stroke="#2e7d32" stroke-width="2.5"/>
-  <polygon points="434,200 419,193 419,207" fill="#2e7d32"/>
-  <text x="480" y="186" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">DROITE</text>
-  <text x="480" y="204" text-anchor="middle" font-size="12" fill="#2e7d32">270° — sect. 19</text>
-
+  <line
+     x1="335"
+     y1="200"
+     x2="419"
+     y2="200"
+     stroke="#2e7d32"
+     stroke-width="2.5"
+     id="line60"
+     style="stroke:#1a5276;stroke-opacity:1" />
+  <polygon
+     points="434,200 419,193 419,207"
+     fill="#2e7d32"
+     id="polygon60"
+     style="fill:#1a5276;fill-opacity:1" />
+  <text
+     x="480"
+     y="183"
+     text-anchor="middle"
+     font-size="14"
+     font-weight="bold"
+     fill="#2e7d32"
+     id="text61"
+     style="fill:#ff0000">DROITE</text>
+  <text
+     x="476.96063"
+     y="219.51561"
+     text-anchor="middle"
+     font-size="12"
+     fill="#2e7d32"
+     id="text62"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Arial, sans-serif;-inkscape-font-specification:'Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#1a5276;fill-opacity:1">256° LiDAR — sect. 16</text>
+  <text
+     x="480"
+     y="203.60245"
+     text-anchor="middle"
+     font-size="11"
+     font-weight="bold"
+     fill="#e07b00"
+     id="text63"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Arial, sans-serif;-inkscape-font-specification:'Arial, sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff0000;fill-opacity:1">+90° véhicule</text>
 </svg>

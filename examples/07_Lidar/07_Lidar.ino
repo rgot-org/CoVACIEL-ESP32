@@ -4,19 +4,19 @@
   Lecture d'un LiDAR rotatif RPLidar avec CoVACIEL_lidar.
 
   Le LiDAR tourne en tâche FreeRTOS après start().
-  Les distances sont disponibles dans le tableau distance[25],
-  indexé par secteur angulaire (0 = 0°, 24 = ~337°, pas ≈ 14°).
+  Les distances sont disponibles dans le tableau distance[23],
+  indexé par secteur angulaire (0 = 0°, 22 = 352°, pas = 16°).
 
   ORIENTATION :
     Le câble de données du LiDAR doit être positionné vers l'ARRIÈRE
-    du véhicule. L'avant du véhicule correspond donc au secteur 180°
-    du LiDAR, soit l'index 12 du tableau distance[].
+    du véhicule. L'avant du véhicule correspond donc au secteur 176°
+    du LiDAR, soit l'index 11 du tableau distance[].
 
         AVANT véhicule
               ↑
-             180° (index 12)
-   90° ←  [LiDAR]  → 270°
-              0°  (index 0)
+             176° (index 11)
+   80° ←  [LiDAR]  → 256°
+             0°  (index 0)
               ↓
         ARRIÈRE véhicule (câble ici)
 
@@ -53,8 +53,8 @@ void loop() {
     lastMs = millis();
 
     Serial.println("--- Distances LiDAR (mm) ---");
-    for (int i = 0; i < 25; i++) {
-      int angle = i * 360 / 25;  // angle approximatif en degrés
+    for (int i = 0; i < 23; i++) {
+      int angle = i * 16;  // angle en degrés (pas = 16°)
       Serial.printf("  Secteur %2d (%3d°) : %d mm\n", i, angle, lidar.distance[i]);
     }
   }

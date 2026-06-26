@@ -110,7 +110,7 @@ void loop() {
 
 ## CoVACIEL_lidar
 
-Pilote un LiDAR rotatif **RPLidar** (SLAMTEC) via UART. Les données sont collectées dans une tâche FreeRTOS et stockées dans le tableau `distance[25]` indexé par secteur angulaire.
+Pilote un LiDAR rotatif **RPLidar** (SLAMTEC) via UART. Les données sont collectées dans une tâche FreeRTOS et stockées dans le tableau `distance[23]` indexé par secteur angulaire.
 
 ### Constructeur
 
@@ -165,7 +165,7 @@ Force une mise à jour du tableau `distance[]`. À appeler si vous n'utilisez pa
 
 > **Important :** le câble de données du LiDAR doit être orienté vers **l'arrière** du véhicule.
 >
-> Conséquence : l'**avant** du véhicule correspond au secteur **180°** du LiDAR.
+> Conséquence : l'**avant** du véhicule correspond au **secteur 11** (≈ 176°) du LiDAR.
 
 ![Orientation du LiDAR dans le véhicule](lidar_orientation.svg)
 
@@ -173,23 +173,26 @@ Force une mise à jour du tableau `distance[]`. À appeler si vous n'utilisez pa
 
 ### Lecture
 
-#### `int distance[25]`
+#### `int distance[23]`
 
-Tableau public contenant les distances en mm, indexé par secteur angulaire (0 à 24, pas ≈ 14°).
+Tableau public contenant les distances en mm, indexé par secteur angulaire (0 à 22, pas = 16°).
 
-Compte tenu de l'orientation câble-arrière, la correspondance est :
+Compte tenu de l'orientation câble-arrière (0° LiDAR = arrière véhicule), les secteurs utiles par angle véhicule sont :
 
-| Secteur | Angle LiDAR | Direction véhicule |
+| Angle véhicule | Secteur | Plage LiDAR du secteur |
 |---|---|---|
-| 0 | 0° | Arrière |
-| 6 | ~86° | Gauche |
-| 12 | ~172° | **Avant** |
-| 19 | ~274° | Droite |
+| −90° (gauche) | **5** | 80°–95° |
+| −45° (avant-gauche) | **8** | 128°–143° |
+| 0° (avant) | **11** | 176°–191° |
+| +45° (avant-droite) | **14** | 224°–239° |
+| +90° (droite) | **16** | 256°–271° |
 
 ```cpp
-int d_avant = lidar.distance[12]; // avant du véhicule = 180° LiDAR
-int d_gauche = lidar.distance[6]; // gauche véhicule
-int d_droite = lidar.distance[19]; // droite véhicule
+int d_avant        = lidar.distance[11]; //   0° véhicule
+int d_avant_gauche = lidar.distance[8];  // −45° véhicule
+int d_gauche       = lidar.distance[5];  // −90° véhicule
+int d_avant_droite = lidar.distance[14]; // +45° véhicule
+int d_droite       = lidar.distance[16]; // +90° véhicule
 ```
 
 ---
@@ -218,9 +221,9 @@ void setup() {
 
 void loop() {
     // Envoyer les distances du lidar sur le bus CAN
-    canbus.setDistAv        (lidar.distance[12], true);
-    canbus.setDistAvGauche45(lidar.distance[9],  true);
-    canbus.setDistAvDroite45(lidar.distance[15], true);
+    canbus.setDistAv        (lidar.distance[11], true);
+    canbus.setDistAvGauche45(lidar.distance[8],  true);
+    canbus.setDistAvDroite45(lidar.distance[14], true);
 
     canbus.updateRx();
 }

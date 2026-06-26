@@ -12,13 +12,13 @@ class CoVACIEL_lidar
 {
 public:
 	CoVACIEL_lidar(HardwareSerial& lidarSerial ) : _lidar(lidarSerial) {} ;// voir https://chat.mistral.ai/chat/77ad5dcb-32f0-4cad-a888-99e5d39cf5f0 
-	// Méthode pour définir le callback de RPlidar
+	// Mï¿½thode pour dï¿½finir le callback de RPlidar
 	void setRPlidarCallback();
 	void init(uint32_t baudrate, uint8_t RXpin, uint8_t TXpin, int8_t motorPin =-1);
 	void start();
 	void stop();
 	void refresh();
-	int distance[25] = { 0 };
+	int distance[23] = { 0 };
 
 private:
 	RPlidar _lidar;
@@ -28,7 +28,7 @@ private:
 	bool _keepSpinning = false;
 	void _dataHandler(uint16_t dist, uint16_t angle_q6, uint8_t newRotFlag, int8_t quality);
 	TaskHandle_t taskHandle = nullptr;
-	// Fonction de tâche statique
+	// Fonction de tï¿½che statique
 	static void taskFunction(void* parameter);
 
 };
@@ -71,7 +71,7 @@ private:
 	int _version;
 	int mesure();
 	TaskHandle_t taskHandle = nullptr;
-	// Fonction de tâche statique
+	// Fonction de tï¿½che statique
 	static void taskFunction(void* parameter);
 
 };
