@@ -1,0 +1,13 @@
+j'ai mis à disposition la bibliothèque CoVACIEL-ESP32 pour Arduino.
+elle apparait comme enregistrée si je vais sur le site https://docs.arduino.cc/libraries/covaciel/
+la version affichée est la 0.0.3 or sur github la dernière en date est la version 1.0.3.
+mais quand je vais dans le gestionnaire de bibliothèque de Arduino, elle n'apparait pas dans le moteur de recherche.
+pouvez-vous m'aider ?
+
+---
+
+I have made the CoVACIEL-ESP32 library available for Arduino.
+It appears as registered when I visit https://docs.arduino.cc/libraries/covaciel/
+The displayed version is 0.0.3, however the latest version on GitHub is 1.0.3.
+But when I go to the Arduino Library Manager, it does not appear in the search engine.
+Can you help me?
